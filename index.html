@@ -7,16 +7,10 @@
 <title>Astra_Krynix | Gaming</title>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    scroll-behavior:smooth;
 }
 
 html{
@@ -24,83 +18,96 @@ html{
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#050510;
+    min-height:100vh;
+    background:#03040a;
     color:white;
+    font-family:Arial,Helvetica,sans-serif;
     overflow-x:hidden;
 }
 
-
 /* =========================
-   BACKGROUND
+   BACKGROUND GRID
 ========================= */
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
+    z-index:-5;
 
-    background:
-    linear-gradient(rgba(0,255,255,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,255,255,.035) 1px,transparent 1px);
+    background-image:
+        linear-gradient(rgba(0,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,255,255,.035) 1px,transparent 1px);
 
     background-size:45px 45px;
-
-    z-index:-5;
 }
-
-body::after{
-    content:"";
-    position:fixed;
-
-    width:500px;
-    height:500px;
-
-    top:-180px;
-    right:-100px;
-
-    background:#7c3cff;
-    filter:blur(180px);
-
-    opacity:.18;
-
-    z-index:-4;
-}
-
 
 /* =========================
    MOUSE GLOW
 ========================= */
 
-.mouse-glow{
+#cursorGlow{
     position:fixed;
 
-    width:240px;
-    height:240px;
+    width:280px;
+    height:280px;
 
-    border-radius:50%;
+    left:0;
+    top:0;
 
     pointer-events:none;
 
-    background:radial-gradient(
-        circle,
-        rgba(0,247,255,.25) 0%,
-        rgba(0,247,255,.12) 30%,
-        rgba(0,247,255,.04) 50%,
-        transparent 72%
-    );
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0,255,255,.45) 0%,
+            rgba(0,255,255,.25) 20%,
+            rgba(0,255,255,.12) 40%,
+            rgba(0,255,255,.05) 58%,
+            transparent 75%
+        );
 
     transform:translate(-50%,-50%);
 
-    z-index:9999;
+    filter:blur(12px);
 
-    mix-blend-mode:screen;
+    z-index:99999;
+
+    opacity:1;
 
     transition:
-        left .08s linear,
-        top .08s linear;
+        left .03s linear,
+        top .03s linear;
 }
 
+/* Small bright point */
+
+#cursorPoint{
+    position:fixed;
+
+    width:12px;
+    height:12px;
+
+    left:0;
+    top:0;
+
+    pointer-events:none;
+
+    border-radius:50%;
+
+    background:#00ffff;
+
+    box-shadow:
+        0 0 8px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff;
+
+    transform:translate(-50%,-50%);
+
+    z-index:100000;
+}
 
 /* =========================
    NAVBAR
@@ -120,9 +127,9 @@ nav{
     justify-content:space-between;
     align-items:center;
 
-    background:rgba(5,5,16,.65);
+    background:rgba(3,4,10,.72);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(20px);
 
     border-bottom:1px solid rgba(255,255,255,.08);
 
@@ -131,7 +138,6 @@ nav{
 
 .logo{
     color:white;
-
     text-decoration:none;
 
     font-size:22px;
@@ -141,38 +147,31 @@ nav{
 }
 
 .logo span{
-    color:#00f7ff;
+    color:#00ffff;
 
     text-shadow:
-    0 0 10px #00f7ff,
-    0 0 25px #00f7ff;
+        0 0 10px #00ffff,
+        0 0 25px #00ffff;
 }
 
 nav ul{
     display:flex;
-
     gap:30px;
-
     list-style:none;
 }
 
-nav ul a{
+nav a{
     color:#aaa;
-
     text-decoration:none;
-
-    font-size:14px;
-
     transition:.3s;
 }
 
 nav ul a:hover{
-    color:#00f7ff;
+    color:#00ffff;
 
     text-shadow:
-    0 0 10px #00f7ff;
+        0 0 12px #00ffff;
 }
-
 
 /* =========================
    HERO
@@ -182,18 +181,17 @@ nav ul a:hover{
     min-height:100vh;
 
     display:flex;
-
     justify-content:center;
     align-items:center;
 
     text-align:center;
 
-    padding:120px 20px 60px;
+    padding:120px 20px 70px;
 
     position:relative;
 }
 
-.hero-content{
+.heroContent{
     max-width:950px;
 }
 
@@ -202,66 +200,60 @@ nav ul a:hover{
 
     padding:10px 20px;
 
-    border:1px solid rgba(0,247,255,.35);
-
     border-radius:50px;
 
-    background:rgba(0,247,255,.06);
+    color:#00ffff;
 
-    color:#00f7ff;
+    background:rgba(0,255,255,.06);
+
+    border:1px solid rgba(0,255,255,.35);
 
     font-size:12px;
 
     letter-spacing:2px;
 
-    margin-bottom:25px;
+    margin-bottom:28px;
 
     box-shadow:
-    0 0 20px rgba(0,247,255,.08);
+        0 0 25px rgba(0,255,255,.08);
 }
 
 .hero h1{
-    font-size:clamp(48px,9vw,105px);
+    font-size:clamp(50px,9vw,110px);
 
     line-height:1;
 
     letter-spacing:3px;
 
     margin-bottom:25px;
-
-    text-shadow:
-    0 0 30px rgba(255,255,255,.08);
 }
 
 .hero h1 span{
-    color:#00f7ff;
+    color:#00ffff;
 
     text-shadow:
-    0 0 10px #00f7ff,
-    0 0 35px rgba(0,247,255,.7),
-    0 0 70px rgba(0,247,255,.35);
+        0 0 10px #00ffff,
+        0 0 30px #00ffff,
+        0 0 70px rgba(0,255,255,.6);
 }
 
 .hero p{
-    color:#aaa;
-
     max-width:680px;
 
     margin:auto;
+
+    color:#999;
 
     line-height:1.8;
 
     font-size:16px;
 }
 
-
 /* =========================
    BUTTONS
 ========================= */
 
 .buttons{
-    margin-top:35px;
-
     display:flex;
 
     justify-content:center;
@@ -269,9 +261,13 @@ nav ul a:hover{
     gap:15px;
 
     flex-wrap:wrap;
+
+    margin-top:35px;
 }
 
 .btn{
+    display:inline-block;
+
     padding:14px 28px;
 
     border-radius:10px;
@@ -283,41 +279,41 @@ nav ul a:hover{
     transition:.3s;
 }
 
-.btn-primary{
-    color:#001014;
+.primary{
+    color:#001010;
 
-    background:#00f7ff;
+    background:#00ffff;
 
     box-shadow:
-    0 0 20px rgba(0,247,255,.3);
+        0 0 20px rgba(0,255,255,.4);
 }
 
-.btn-primary:hover{
+.primary:hover{
     transform:translateY(-5px);
 
     box-shadow:
-    0 0 40px rgba(0,247,255,.7);
+        0 0 20px #00ffff,
+        0 0 50px rgba(0,255,255,.5);
 }
 
-.btn-secondary{
+.secondary{
     color:white;
 
-    border:1px solid rgba(255,255,255,.15);
-
     background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.15);
 }
 
-.btn-secondary:hover{
+.secondary:hover{
+    color:#00ffff;
+
+    border-color:#00ffff;
+
     transform:translateY(-5px);
 
-    color:#00f7ff;
-
-    border-color:#00f7ff;
-
     box-shadow:
-    0 0 25px rgba(0,247,255,.12);
+        0 0 25px rgba(0,255,255,.2);
 }
-
 
 /* =========================
    SECTIONS
@@ -327,34 +323,33 @@ section{
     padding:100px 7%;
 }
 
-.section-title{
+.title{
     text-align:center;
 
     margin-bottom:55px;
 }
 
-.section-title h2{
+.title h2{
     font-size:36px;
 
     letter-spacing:2px;
 }
 
-.section-title span{
-    color:#00f7ff;
+.title h2 span{
+    color:#00ffff;
 
     text-shadow:
-    0 0 15px rgba(0,247,255,.5);
+        0 0 15px rgba(0,255,255,.6);
 }
 
-.section-title p{
+.title p{
     color:#777;
 
     margin-top:10px;
 }
 
-
 /* =========================
-   GAME CARDS
+   CARDS
 ========================= */
 
 .cards{
@@ -365,7 +360,7 @@ section{
     display:grid;
 
     grid-template-columns:
-    repeat(3,1fr);
+        repeat(3,1fr);
 
     gap:25px;
 }
@@ -373,55 +368,38 @@ section{
 .card{
     position:relative;
 
-    padding:35px 25px;
+    padding:35px 28px;
+
+    min-height:230px;
 
     border-radius:20px;
 
     background:
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.07),
-        rgba(255,255,255,.02)
-    );
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.02)
+        );
 
     border:1px solid rgba(255,255,255,.08);
 
-    overflow:hidden;
-
     transition:.4s;
-}
 
-.card::before{
-    content:"";
-
-    position:absolute;
-
-    width:160px;
-    height:160px;
-
-    right:-70px;
-    top:-70px;
-
-    background:#00f7ff;
-
-    filter:blur(80px);
-
-    opacity:.08;
+    overflow:hidden;
 }
 
 .card:hover{
     transform:
-    translateY(-10px)
-    scale(1.02);
+        translateY(-10px)
+        scale(1.02);
 
-    border-color:
-    rgba(0,247,255,.5);
+    border-color:rgba(0,255,255,.6);
 
     box-shadow:
-    0 20px 50px rgba(0,247,255,.1);
+        0 20px 50px rgba(0,255,255,.12);
 }
 
-.icon{
+.cardIcon{
     font-size:42px;
 
     margin-bottom:20px;
@@ -441,57 +419,46 @@ section{
     font-size:14px;
 }
 
-
 /* =========================
    ABOUT
 ========================= */
 
-.about-box{
+.aboutBox{
     max-width:950px;
 
     margin:auto;
 
-    padding:45px;
+    padding:50px 40px;
+
+    text-align:center;
 
     border-radius:25px;
 
     background:
-    rgba(255,255,255,.035);
+        rgba(255,255,255,.035);
 
     border:
-    1px solid rgba(255,255,255,.08);
-
-    text-align:center;
-
-    box-shadow:
-    0 0 50px rgba(0,0,0,.2);
+        1px solid rgba(255,255,255,.08);
 }
 
-.about-box h2{
+.aboutBox h2{
     margin-bottom:20px;
-
-    letter-spacing:1px;
 }
 
-.about-box p{
+.aboutBox p{
     color:#999;
 
     line-height:1.9;
 }
-
-
-/* =========================
-   STATS
-========================= */
 
 .stats{
     display:flex;
 
     justify-content:center;
 
-    gap:20px;
-
     flex-wrap:wrap;
+
+    gap:20px;
 
     margin-top:35px;
 }
@@ -501,39 +468,37 @@ section{
 
     padding:25px;
 
-    text-align:center;
-
     border-radius:15px;
 
-    background:
-    rgba(255,255,255,.035);
+    background:rgba(255,255,255,.035);
 
-    border:
-    1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);
 
     transition:.3s;
 }
 
 .stat:hover{
+    border-color:#00ffff;
+
     transform:translateY(-5px);
 
-    border-color:#00f7ff;
+    box-shadow:
+        0 0 25px rgba(0,255,255,.12);
 }
 
 .stat h3{
     font-size:30px;
 
-    color:#00f7ff;
+    color:#00ffff;
 }
 
 .stat p{
-    font-size:12px;
-
     color:#777;
+
+    font-size:12px;
 
     margin-top:5px;
 }
-
 
 /* =========================
    CTA
@@ -542,11 +507,10 @@ section{
 .cta{
     text-align:center;
 
-    padding:
-    100px 20px;
+    padding:100px 20px;
 }
 
-.cta-box{
+.ctaBox{
     max-width:900px;
 
     margin:auto;
@@ -556,77 +520,71 @@ section{
     border-radius:30px;
 
     background:
-    linear-gradient(
-        135deg,
-        rgba(0,247,255,.09),
-        rgba(124,60,255,.09)
-    );
+        linear-gradient(
+            135deg,
+            rgba(0,255,255,.08),
+            rgba(124,60,255,.08)
+        );
 
     border:
-    1px solid rgba(255,255,255,.1);
-
-    box-shadow:
-    0 0 70px rgba(0,247,255,.05);
+        1px solid rgba(255,255,255,.1);
 }
 
-.cta h2{
+.ctaBox h2{
     font-size:38px;
 
     margin-bottom:15px;
 }
 
-.cta p{
+.ctaBox p{
     color:#999;
 
     margin-bottom:30px;
 }
-
 
 /* =========================
    FOOTER
 ========================= */
 
 footer{
-    text-align:center;
-
     padding:30px;
+
+    text-align:center;
 
     color:#666;
 
     border-top:
-    1px solid rgba(255,255,255,.06);
+        1px solid rgba(255,255,255,.07);
 
     font-size:13px;
 }
 
 footer span{
-    color:#00f7ff;
+    color:#00ffff;
 }
-
 
 /* =========================
    POPUP
 ========================= */
 
-.popup{
+#popup{
     position:fixed;
 
     inset:0;
-
-    background:
-    rgba(0,0,0,.78);
-
-    backdrop-filter:blur(10px);
 
     display:flex;
 
     justify-content:center;
     align-items:center;
 
+    background:rgba(0,0,0,.82);
+
+    backdrop-filter:blur(10px);
+
     z-index:2000;
 }
 
-.popup-box{
+.popupBox{
     width:min(450px,90%);
 
     padding:45px 30px;
@@ -635,50 +593,54 @@ footer span{
 
     border-radius:25px;
 
-    background:#0b0b18;
+    background:#0a0b15;
 
     border:
-    1px solid rgba(0,247,255,.3);
+        1px solid rgba(0,255,255,.35);
 
     box-shadow:
-    0 0 70px rgba(0,247,255,.15);
+        0 0 60px rgba(0,255,255,.15);
 }
 
-.popup-box h2{
+.popupBox h2{
     margin-bottom:15px;
+
+    color:#00ffff;
+
+    text-shadow:
+        0 0 15px #00ffff;
 }
 
-.popup-box p{
+.popupBox p{
     color:#888;
 
     margin-bottom:25px;
 }
 
-.close{
-    cursor:pointer;
-
+.enter{
     display:inline-block;
 
-    padding:12px 27px;
+    padding:12px 28px;
 
-    border-radius:8px;
+    border-radius:9px;
 
-    background:#00f7ff;
+    background:#00ffff;
 
-    color:#001014;
+    color:#001010;
 
     font-weight:bold;
+
+    cursor:pointer;
 
     transition:.3s;
 }
 
-.close:hover{
+.enter:hover{
     transform:scale(1.05);
 
     box-shadow:
-    0 0 25px rgba(0,247,255,.5);
+        0 0 30px rgba(0,255,255,.6);
 }
-
 
 /* =========================
    MOBILE
@@ -702,29 +664,29 @@ footer span{
         padding:75px 5%;
     }
 
-    .about-box{
-        padding:30px 20px;
+    .aboutBox{
+        padding:35px 20px;
     }
 
-    .cta h2{
+    .ctaBox h2{
         font-size:28px;
     }
 
-    .mouse-glow{
-        width:180px;
-        height:180px;
+    #cursorGlow,
+    #cursorPoint{
+        display:none;
     }
 }
 
 </style>
 </head>
 
-
 <body>
 
+<!-- MOUSE EFFECT -->
 
-<!-- MOUSE FOLLOW GLOW -->
-<div class="mouse-glow"></div>
+<div id="cursorGlow"></div>
+<div id="cursorPoint"></div>
 
 
 <!-- NAVBAR -->
@@ -736,23 +698,10 @@ footer span{
     </a>
 
     <ul>
-
-        <li>
-            <a href="#home">Home</a>
-        </li>
-
-        <li>
-            <a href="#games">Games</a>
-        </li>
-
-        <li>
-            <a href="#about">About</a>
-        </li>
-
-        <li>
-            <a href="#contact">Contact</a>
-        </li>
-
+        <li><a href="#home">Home</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
     </ul>
 
 </nav>
@@ -762,7 +711,7 @@ footer span{
 
 <section class="hero" id="home">
 
-    <div class="hero-content">
+    <div class="heroContent">
 
         <div class="badge">
             ⚡ GAMING • CONTENT • COMMUNITY
@@ -781,18 +730,18 @@ footer span{
         <div class="buttons">
 
             <a
-            class="btn btn-primary"
-            href="https://www.youtube.com/@Astra_Krynix"
-            target="_blank">
+                class="btn primary"
+                href="https://www.youtube.com/@Astra_Krynix"
+                target="_blank">
 
                 ▶ YouTube
 
             </a>
 
             <a
-            class="btn btn-secondary"
-            href="https://discord.gg/nqyaVPUU8"
-            target="_blank">
+                class="btn secondary"
+                href="https://discord.gg/nqyaVPUU8"
+                target="_blank">
 
                 💬 Discord
 
@@ -809,7 +758,7 @@ footer span{
 
 <section id="games">
 
-    <div class="section-title">
+    <div class="title">
 
         <h2>
             MY <span>GAMES</span>
@@ -824,10 +773,9 @@ footer span{
 
     <div class="cards">
 
-
         <div class="card">
 
-            <div class="icon">
+            <div class="cardIcon">
                 ⛏️
             </div>
 
@@ -845,7 +793,7 @@ footer span{
 
         <div class="card">
 
-            <div class="icon">
+            <div class="cardIcon">
                 🔥
             </div>
 
@@ -863,7 +811,7 @@ footer span{
 
         <div class="card">
 
-            <div class="icon">
+            <div class="cardIcon">
                 🎮
             </div>
 
@@ -878,7 +826,6 @@ footer span{
 
         </div>
 
-
     </div>
 
 </section>
@@ -888,7 +835,7 @@ footer span{
 
 <section id="about">
 
-    <div class="section-title">
+    <div class="title">
 
         <h2>
             ABOUT <span>ME</span>
@@ -897,7 +844,7 @@ footer span{
     </div>
 
 
-    <div class="about-box">
+    <div class="aboutBox">
 
         <h2>
             WELCOME TO ASTRA_KRYNIX
@@ -906,19 +853,15 @@ footer span{
         <p>
             I'm a gaming creator who loves Minecraft,
             PvP, building and creating entertaining Shorts.
-            This website is my gaming hub where you can
-            find my content and community.
+            This website is my gaming hub.
         </p>
 
 
         <div class="stats">
 
-
             <div class="stat">
 
-                <h3>
-                    🎮
-                </h3>
+                <h3>🎮</h3>
 
                 <p>
                     GAMER
@@ -929,9 +872,7 @@ footer span{
 
             <div class="stat">
 
-                <h3>
-                    ⚡
-                </h3>
+                <h3>⚡</h3>
 
                 <p>
                     SHORTS CREATOR
@@ -942,16 +883,13 @@ footer span{
 
             <div class="stat">
 
-                <h3>
-                    💎
-                </h3>
+                <h3>💎</h3>
 
                 <p>
                     GAMING COMMUNITY
                 </p>
 
             </div>
-
 
         </div>
 
@@ -962,11 +900,9 @@ footer span{
 
 <!-- CONTACT -->
 
-<section
-class="cta"
-id="contact">
+<section class="cta" id="contact">
 
-    <div class="cta-box">
+    <div class="ctaBox">
 
         <h2>
             JOIN THE COMMUNITY
@@ -977,29 +913,25 @@ id="contact">
             become part of the Astra_Krynix journey.
         </p>
 
-
         <div class="buttons">
 
-
             <a
-            class="btn btn-primary"
-            href="https://www.youtube.com/@Astra_Krynix"
-            target="_blank">
+                class="btn primary"
+                href="https://www.youtube.com/@Astra_Krynix"
+                target="_blank">
 
                 ▶ SUBSCRIBE
 
             </a>
 
-
             <a
-            class="btn btn-secondary"
-            href="https://discord.gg/nqyaVPUU8"
-            target="_blank">
+                class="btn secondary"
+                href="https://discord.gg/nqyaVPUU8"
+                target="_blank">
 
                 💬 JOIN DISCORD
 
             </a>
-
 
         </div>
 
@@ -1021,11 +953,9 @@ id="contact">
 
 <!-- WELCOME POPUP -->
 
-<div
-class="popup"
-id="popup">
+<div id="popup">
 
-    <div class="popup-box">
+    <div class="popupBox">
 
         <h2>
             ⚡ ASTRA_KRYNIX
@@ -1037,8 +967,8 @@ id="popup">
         </p>
 
         <div
-        class="close"
-        onclick="closePopup()">
+            class="enter"
+            onclick="closePopup()">
 
             ENTER WEBSITE
 
@@ -1048,8 +978,6 @@ id="popup">
 
 </div>
 
-
-<!-- JAVASCRIPT -->
 
 <script>
 
@@ -1065,38 +993,51 @@ function closePopup(){
 
 
 /* =========================
-   MOUSE FOLLOW GLOW
+   POWERFUL MOUSE GLOW
 ========================= */
 
-const glow =
-document.querySelector(".mouse-glow");
+const cursorGlow =
+    document.getElementById("cursorGlow");
+
+const cursorPoint =
+    document.getElementById("cursorPoint");
+
 
 document.addEventListener(
-"mousemove",
-function(event){
+    "mousemove",
+    function(event){
 
-    glow.style.left =
-    event.clientX + "px";
+        cursorGlow.style.left =
+            event.clientX + "px";
 
-    glow.style.top =
-    event.clientY + "px";
-
-});
+        cursorGlow.style.top =
+            event.clientY + "px";
 
 
-/* Hide glow on mobile */
+        cursorPoint.style.left =
+            event.clientX + "px";
+
+        cursorPoint.style.top =
+            event.clientY + "px";
+
+    }
+);
+
+
+/* Hide cursor effects on touch devices */
 
 document.addEventListener(
-"touchstart",
-function(){
+    "touchstart",
+    function(){
 
-    glow.style.display="none";
+        cursorGlow.style.display="none";
 
-});
+        cursorPoint.style.display="none";
 
+    }
+);
 
 </script>
-
 
 </body>
 </html>
