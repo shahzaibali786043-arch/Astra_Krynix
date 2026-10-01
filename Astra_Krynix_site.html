@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astra_Krynix</title>
+  <meta name="description" content="Astra_Krynix — Minecraft, Free Fire and gaming content." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #070b12;
+      color: #f5f7fb;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 183, 255, .16), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(125, 60, 255, .14), transparent 30%),
+        linear-gradient(135deg, #070b12, #0d1420 55%, #080b12);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 45px 45px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+      pointer-events: none;
+    }
+
+    .hero-content { max-width: 850px; position: relative; z-index: 1; }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      color: #9edfff;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(48px, 9vw, 96px);
+      line-height: .95;
+      letter-spacing: -4px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #ffffff, #70d7ff, #9a7cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      color: #b8c2d1;
+      font-size: clamp(17px, 2.4vw, 22px);
+      max-width: 690px;
+      margin: 0 auto 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); opacity: .92; }
+    .btn-primary { background: #eaf8ff; color: #071018; }
+    .btn-secondary { border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); }
+
+    nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 5px;
+      padding: 7px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(9, 14, 22, .70);
+      backdrop-filter: blur(14px);
+      border-radius: 15px;
+    }
+
+    nav a { padding: 9px 13px; border-radius: 10px; color: #ccd5e0; font-size: 14px; }
+    nav a:hover { background: rgba(255,255,255,.08); color: white; }
+
+    section { padding: 90px 20px; max-width: 1100px; margin: auto; }
+    .section-title { font-size: 34px; margin-bottom: 10px; }
+    .section-subtitle { color: #8f9cad; margin-bottom: 30px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.035);
+      border-radius: 18px;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(112, 215, 255, .30); }
+
+    .icon { font-size: 34px; margin-bottom: 13px; }
+    .card h3 { margin-bottom: 8px; }
+    .card p { color: #99a5b5; font-size: 15px; }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .about-box {
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .stat {
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .stat strong { display: block; font-size: 28px; }
+    .stat span { color: #8f9cad; font-size: 13px; }
+
+    .contact {
+      text-align: center;
+      padding-bottom: 120px;
+    }
+
+    footer {
+      text-align: center;
+      color: #6f7b8b;
+      padding: 25px 20px;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+
+    @media (max-width: 800px) {
+      .cards, .about { grid-template-columns: 1fr; }
+      nav { width: calc(100% - 24px); justify-content: center; }
+      nav a { font-size: 12px; padding: 8px 9px; }
+      h1 { letter-spacing: -2px; }
+    }
+  
+    /* Welcome Popup */
+    .welcome-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(2,5,10,.78); backdrop-filter: blur(8px); opacity: 1; visibility: visible; transition: opacity .25s ease, visibility .25s ease; }
+    .welcome-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .welcome-popup { width: min(520px,100%); padding: 36px 28px 28px; text-align: center; border: 1px solid rgba(112,215,255,.22); border-radius: 24px; background: radial-gradient(circle at 50% 0%, rgba(112,215,255,.12), transparent 45%), linear-gradient(145deg,#101923,#0a0f17); box-shadow: 0 25px 80px rgba(0,0,0,.55); animation: popupIn .28s ease; }
+    .welcome-icon { font-size: 48px; margin-bottom: 12px; } .welcome-popup h2 { font-size: 32px; margin-bottom: 10px; } .welcome-popup p { color: #aab6c5; margin-bottom: 24px; }
+    .welcome-close { border: 0; cursor: pointer; padding: 12px 24px; border-radius: 12px; font-weight: 700; background: #eaf8ff; color: #071018; transition: transform .2s ease, opacity .2s ease; }
+    .welcome-close:hover { transform: translateY(-2px); opacity: .92; }
+    @keyframes popupIn { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+</style>
+</head>
+<body>
+
+  <div class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+    <div class="welcome-popup">
+      <div class="welcome-icon">👋🎮</div>
+      <h2 id="welcomeTitle">Welcome to Astra_Krynix!</h2>
+      <p>Glad to have you here. Explore the site and check out my gaming content.</p>
+      <button class="welcome-close" id="welcomeClose">Enter Website</button>
+    </div>
+  </div>
+
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#content">Content</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <div class="badge">Gaming Creator</div>
+      <h1>Astra_Krynix</h1>
+      <p class="subtitle">
+        Minecraft • Free Fire • PvP • Shorts<br>
+        Welcome to my gaming world.
+      </p>
+      <div class="buttons">
+        <a class="btn btn-primary" href="https://www.youtube.com/@Astra_Krynix" target="_blank">Visit YouTube</a>
+        <a class="btn btn-secondary" href="#content">Explore Content</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="content">
+    <h2 class="section-title">What I Play</h2>
+    <p class="section-subtitle">The main games and content on Astra_Krynix.</p>
+
+    <div class="cards">
+      <article class="card">
+        <div class="icon">⛏️</div>
+        <h3>Minecraft</h3>
+        <p>PvP, building, SMP adventures, servers and crazy Shorts.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">🔥</div>
+        <h3>Free Fire</h3>
+        <p>Fast gameplay, clutch moments and short-form gaming clips.</p>
+      </article>
+
+      <article class="card">
+        <div class="icon">⚡</div>
+        <h3>Gaming Shorts</h3>
+        <p>Quick, funny and intense gaming moments made for Shorts.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <div class="about-box">
+        <h2 class="section-title">About Me</h2>
+        <p style="color:#a8b3c1; margin-top:14px;">
+          Hey! I'm Astra_Krynix, a gaming creator focused on Minecraft,
+          Free Fire and fun gaming Shorts. This site is my little home on the web.
+        </p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>🎮</strong><span>Gaming</span></div>
+        <div class="stat"><strong>▶️</strong><span>YouTube</span></div>
+        <div class="stat"><strong>⚔️</strong><span>PvP</span></div>
+        <div class="stat"><strong>🚀</strong><span>Shorts</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-subtitle">Find me on my gaming platforms.</p>
+
+    <div class="buttons">
+      <a class="btn btn-primary" href="https://www.youtube.com/@Astra_Krynix" target="_blank">YouTube</a>
+      <a class="btn btn-secondary" href="https://discord.gg/nqyaVPUU8" target="_blank">Discord</a>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Astra_Krynix. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  
+    const welcomeOverlay = document.getElementById("welcomeOverlay");
+    const welcomeClose = document.getElementById("welcomeClose");
+    function closeWelcome() { welcomeOverlay.classList.add("hidden"); }
+    welcomeClose.addEventListener("click", closeWelcome);
+    welcomeOverlay.addEventListener("click", (event) => { if (event.target === welcomeOverlay) closeWelcome(); });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeWelcome(); });
+
+  </script>
+</body>
+</html>
