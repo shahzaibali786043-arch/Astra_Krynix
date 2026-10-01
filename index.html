@@ -1,300 +1,670 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Astra_Krynix</title>
-  <meta name="description" content="Astra_Krynix — Minecraft, Free Fire and gaming content." />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #070b12;
-      color: #f5f7fb;
-      line-height: 1.6;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Astra_Krynix | Gaming</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Poppins,sans-serif;
+    background:#050510;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(0,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,255,.035) 1px,transparent 1px);
+    background-size:45px 45px;
+    z-index:-3;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#7c3cff;
+    filter:blur(180px);
+    opacity:.16;
+    top:-150px;
+    right:-100px;
+    z-index:-2;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(5,5,16,.65);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:1000;
+}
+
+.logo{
+    font-family:Orbitron,sans-serif;
+    font-size:22px;
+    font-weight:800;
+    color:#fff;
+    text-decoration:none;
+}
+
+.logo span{
+    color:#00f7ff;
+    text-shadow:0 0 20px #00f7ff;
+}
+
+nav ul{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav ul a{
+    color:#bbb;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav ul a:hover{
+    color:#00f7ff;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 20px 60px;
+    position:relative;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 18px;
+    border:1px solid rgba(0,247,255,.35);
+    border-radius:50px;
+    background:rgba(0,247,255,.06);
+    color:#00f7ff;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:Orbitron,sans-serif;
+    font-size:clamp(45px,8vw,100px);
+    line-height:1;
+    letter-spacing:3px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#00f7ff;
+    text-shadow:
+    0 0 10px #00f7ff,
+    0 0 35px rgba(0,247,255,.7);
+}
+
+.hero p{
+    color:#aaa;
+    max-width:650px;
+    margin:auto;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 27px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary{
+    color:#001014;
+    background:#00f7ff;
+    box-shadow:0 0 25px rgba(0,247,255,.35);
+}
+
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 40px rgba(0,247,255,.7);
+}
+
+.btn-secondary{
+    color:white;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.04);
+}
+
+.btn-secondary:hover{
+    border-color:#00f7ff;
+    color:#00f7ff;
+    transform:translateY(-4px);
+}
+
+/* SECTION */
+section{
+    padding:100px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title h2{
+    font-family:Orbitron,sans-serif;
+    font-size:35px;
+}
+
+.section-title span{
+    color:#00f7ff;
+}
+
+.section-title p{
+    color:#777;
+    margin-top:10px;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.card{
+    position:relative;
+    padding:35px 25px;
+    border-radius:20px;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.07),
+        rgba(255,255,255,.02)
+    );
+    border:1px solid rgba(255,255,255,.08);
+    overflow:hidden;
+    transition:.4s;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    background:#00f7ff;
+    filter:blur(90px);
+    opacity:.08;
+    top:-80px;
+    right:-50px;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:rgba(0,247,255,.5);
+    box-shadow:0 15px 50px rgba(0,247,255,.1);
+}
+
+.icon{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-family:Orbitron,sans-serif;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#888;
+    line-height:1.7;
+    font-size:14px;
+}
+
+/* ABOUT */
+.about-box{
+    max-width:950px;
+    margin:auto;
+    padding:45px;
+    border-radius:25px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.08);
+    text-align:center;
+}
+
+.about-box h2{
+    font-family:Orbitron,sans-serif;
+    margin-bottom:20px;
+}
+
+.about-box p{
+    color:#999;
+    line-height:1.9;
+}
+
+/* STATS */
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:35px;
+}
+
+.stat{
+    min-width:170px;
+    padding:25px;
+    text-align:center;
+    border-radius:15px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.stat h3{
+    font-family:Orbitron,sans-serif;
+    font-size:28px;
+    color:#00f7ff;
+}
+
+.stat p{
+    font-size:12px;
+    color:#777;
+    margin-top:5px;
+}
+
+/* CTA */
+.cta{
+    text-align:center;
+    padding:100px 20px;
+}
+
+.cta-box{
+    max-width:900px;
+    margin:auto;
+    padding:65px 30px;
+    border-radius:30px;
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,247,255,.09),
+        rgba(124,60,255,.09)
+    );
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.cta h2{
+    font-family:Orbitron,sans-serif;
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.cta p{
+    color:#999;
+    margin-bottom:30px;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    border-top:1px solid rgba(255,255,255,.06);
+    font-size:13px;
+}
+
+footer span{
+    color:#00f7ff;
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:2000;
+}
+
+.popup-box{
+    width:min(450px,90%);
+    padding:45px 30px;
+    text-align:center;
+    border-radius:25px;
+    background:#0b0b18;
+    border:1px solid rgba(0,247,255,.3);
+    box-shadow:0 0 70px rgba(0,247,255,.15);
+}
+
+.popup-box h2{
+    font-family:Orbitron,sans-serif;
+    margin-bottom:15px;
+}
+
+.popup-box p{
+    color:#888;
+    margin-bottom:25px;
+}
+
+.close{
+    cursor:pointer;
+    display:inline-block;
+    padding:11px 25px;
+    border-radius:8px;
+    background:#00f7ff;
+    color:#001014;
+    font-weight:bold;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    nav{
+        padding:17px 5%;
     }
-    a { color: inherit; text-decoration: none; }
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(0, 183, 255, .16), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(125, 60, 255, .14), transparent 30%),
-        linear-gradient(135deg, #070b12, #0d1420 55%, #080b12);
+    nav ul{
+        display:none;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 45px 45px;
-      mask-image: linear-gradient(to bottom, black, transparent);
-      pointer-events: none;
+    .cards{
+        grid-template-columns:1fr;
     }
 
-    .hero-content { max-width: 850px; position: relative; z-index: 1; }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      color: #9edfff;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 22px;
+    section{
+        padding:75px 5%;
     }
 
-    h1 {
-      font-size: clamp(48px, 9vw, 96px);
-      line-height: .95;
-      letter-spacing: -4px;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #ffffff, #70d7ff, #9a7cff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .about-box{
+        padding:30px 20px;
     }
 
-    .subtitle {
-      color: #b8c2d1;
-      font-size: clamp(17px, 2.4vw, 22px);
-      max-width: 690px;
-      margin: 0 auto 30px;
+    .cta h2{
+        font-size:28px;
     }
-
-    .buttons {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-weight: 700;
-      transition: transform .2s ease, opacity .2s ease;
-    }
-
-    .btn:hover { transform: translateY(-2px); opacity: .92; }
-    .btn-primary { background: #eaf8ff; color: #071018; }
-    .btn-secondary { border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.05); }
-
-    nav {
-      position: fixed;
-      top: 18px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      display: flex;
-      gap: 5px;
-      padding: 7px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(9, 14, 22, .70);
-      backdrop-filter: blur(14px);
-      border-radius: 15px;
-    }
-
-    nav a { padding: 9px 13px; border-radius: 10px; color: #ccd5e0; font-size: 14px; }
-    nav a:hover { background: rgba(255,255,255,.08); color: white; }
-
-    section { padding: 90px 20px; max-width: 1100px; margin: auto; }
-    .section-title { font-size: 34px; margin-bottom: 10px; }
-    .section-subtitle { color: #8f9cad; margin-bottom: 30px; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 25px;
-      border: 1px solid rgba(255,255,255,.09);
-      background: rgba(255,255,255,.035);
-      border-radius: 18px;
-      transition: transform .2s ease, border-color .2s ease;
-    }
-    .card:hover { transform: translateY(-4px); border-color: rgba(112, 215, 255, .30); }
-
-    .icon { font-size: 34px; margin-bottom: 13px; }
-    .card h3 { margin-bottom: 8px; }
-    .card p { color: #99a5b5; font-size: 15px; }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .about-box {
-      padding: 28px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .stat {
-      padding: 20px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .stat strong { display: block; font-size: 28px; }
-    .stat span { color: #8f9cad; font-size: 13px; }
-
-    .contact {
-      text-align: center;
-      padding-bottom: 120px;
-    }
-
-    footer {
-      text-align: center;
-      color: #6f7b8b;
-      padding: 25px 20px;
-      border-top: 1px solid rgba(255,255,255,.07);
-    }
-
-    @media (max-width: 800px) {
-      .cards, .about { grid-template-columns: 1fr; }
-      nav { width: calc(100% - 24px); justify-content: center; }
-      nav a { font-size: 12px; padding: 8px 9px; }
-      h1 { letter-spacing: -2px; }
-    }
-  
-    /* Welcome Popup */
-    .welcome-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(2,5,10,.78); backdrop-filter: blur(8px); opacity: 1; visibility: visible; transition: opacity .25s ease, visibility .25s ease; }
-    .welcome-overlay.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-    .welcome-popup { width: min(520px,100%); padding: 36px 28px 28px; text-align: center; border: 1px solid rgba(112,215,255,.22); border-radius: 24px; background: radial-gradient(circle at 50% 0%, rgba(112,215,255,.12), transparent 45%), linear-gradient(145deg,#101923,#0a0f17); box-shadow: 0 25px 80px rgba(0,0,0,.55); animation: popupIn .28s ease; }
-    .welcome-icon { font-size: 48px; margin-bottom: 12px; } .welcome-popup h2 { font-size: 32px; margin-bottom: 10px; } .welcome-popup p { color: #aab6c5; margin-bottom: 24px; }
-    .welcome-close { border: 0; cursor: pointer; padding: 12px 24px; border-radius: 12px; font-weight: 700; background: #eaf8ff; color: #071018; transition: transform .2s ease, opacity .2s ease; }
-    .welcome-close:hover { transform: translateY(-2px); opacity: .92; }
-    @keyframes popupIn { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-
+}
 </style>
 </head>
+
 <body>
 
-  <div class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-    <div class="welcome-popup">
-      <div class="welcome-icon">👋🎮</div>
-      <h2 id="welcomeTitle">Welcome to Astra_Krynix!</h2>
-      <p>Glad to have you here. Explore the site and check out my gaming content.</p>
-      <button class="welcome-close" id="welcomeClose">Enter Website</button>
-    </div>
-  </div>
+<!-- NAVBAR -->
+<nav>
+    <a href="#" class="logo">ASTRA<span>_KRYNIX</span></a>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#content">Content</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<!-- HERO -->
+<section class="hero" id="home">
 
-  <header class="hero" id="home">
     <div class="hero-content">
-      <div class="badge">Gaming Creator</div>
-      <h1>Astra_Krynix</h1>
-      <p class="subtitle">
-        Minecraft • Free Fire • PvP • Shorts<br>
-        Welcome to my gaming world.
-      </p>
-      <div class="buttons">
-        <a class="btn btn-primary" href="https://www.youtube.com/@Astra_Krynix" target="_blank">Visit YouTube</a>
-        <a class="btn btn-secondary" href="#content">Explore Content</a>
-      </div>
-    </div>
-  </header>
 
-  <section id="content">
-    <h2 class="section-title">What I Play</h2>
-    <p class="section-subtitle">The main games and content on Astra_Krynix.</p>
+        <div class="badge">
+            ⚡ GAMING • CONTENT • COMMUNITY
+        </div>
+
+        <h1>
+            ASTRA<span>_KRYNIX</span>
+        </h1>
+
+        <p>
+            Welcome to my gaming universe.
+            Minecraft, Free Fire, PvP, Shorts and crazy gaming moments.
+            Stay tuned and join the journey.
+        </p>
+
+        <div class="buttons">
+
+            <a
+            class="btn btn-primary"
+            href="https://www.youtube.com/@Astra_Krynix"
+            target="_blank">
+            ▶ YouTube
+            </a>
+
+            <a
+            class="btn btn-secondary"
+            href="https://discord.gg/nqyaVPUU8"
+            target="_blank">
+            💬 Discord
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GAMES -->
+<section id="games">
+
+    <div class="section-title">
+
+        <h2>MY <span>GAMES</span></h2>
+
+        <p>What you can expect from Astra_Krynix</p>
+
+    </div>
+
 
     <div class="cards">
-      <article class="card">
-        <div class="icon">⛏️</div>
-        <h3>Minecraft</h3>
-        <p>PvP, building, SMP adventures, servers and crazy Shorts.</p>
-      </article>
 
-      <article class="card">
-        <div class="icon">🔥</div>
-        <h3>Free Fire</h3>
-        <p>Fast gameplay, clutch moments and short-form gaming clips.</p>
-      </article>
+        <div class="card">
 
-      <article class="card">
-        <div class="icon">⚡</div>
-        <h3>Gaming Shorts</h3>
-        <p>Quick, funny and intense gaming moments made for Shorts.</p>
-      </article>
+            <div class="icon">⛏️</div>
+
+            <h3>MINECRAFT</h3>
+
+            <p>
+                PvP, building, SMP adventures,
+                crazy moments and Minecraft Shorts.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🔥</div>
+
+            <h3>FREE FIRE</h3>
+
+            <p>
+                Fast gameplay, intense fights,
+                funny moments and gaming Shorts.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎮</div>
+
+            <h3>GAMING</h3>
+
+            <p>
+                Different games, experiments,
+                challenges and entertaining content.
+            </p>
+
+        </div>
+
     </div>
-  </section>
 
-  <section id="about">
-    <div class="about">
-      <div class="about-box">
-        <h2 class="section-title">About Me</h2>
-        <p style="color:#a8b3c1; margin-top:14px;">
-          Hey! I'm Astra_Krynix, a gaming creator focused on Minecraft,
-          Free Fire and fun gaming Shorts. This site is my little home on the web.
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+
+    <div class="section-title">
+
+        <h2>ABOUT <span>ME</span></h2>
+
+    </div>
+
+
+    <div class="about-box">
+
+        <h2>WELCOME TO ASTRA_KRYNIX</h2>
+
+        <p>
+            I'm a gaming creator who loves Minecraft,
+            PvP, building and creating entertaining Shorts.
+            This website is my little gaming hub where
+            you can find my content and community.
         </p>
-      </div>
 
-      <div class="stats">
-        <div class="stat"><strong>🎮</strong><span>Gaming</span></div>
-        <div class="stat"><strong>▶️</strong><span>YouTube</span></div>
-        <div class="stat"><strong>⚔️</strong><span>PvP</span></div>
-        <div class="stat"><strong>🚀</strong><span>Shorts</span></div>
-      </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3>🎮</h3>
+                <p>GAMER</p>
+            </div>
+
+            <div class="stat">
+                <h3>⚡</h3>
+                <p>SHORTS CREATOR</p>
+            </div>
+
+            <div class="stat">
+                <h3>💎</h3>
+                <p>GAMING COMMUNITY</p>
+            </div>
+
+        </div>
+
     </div>
-  </section>
 
-  <section class="contact" id="contact">
-    <h2 class="section-title">Let's Connect</h2>
-    <p class="section-subtitle">Find me on my gaming platforms.</p>
+</section>
 
-    <div class="buttons">
-      <a class="btn btn-primary" href="https://www.youtube.com/@Astra_Krynix" target="_blank">YouTube</a>
-      <a class="btn btn-secondary" href="https://discord.gg/nqyaVPUU8" target="_blank">Discord</a>
+
+<!-- CONTACT -->
+<section class="cta" id="contact">
+
+    <div class="cta-box">
+
+        <h2>JOIN THE COMMUNITY</h2>
+
+        <p>
+            Watch the videos, join Discord and become
+            part of the Astra_Krynix journey.
+        </p>
+
+        <div class="buttons">
+
+            <a
+            class="btn btn-primary"
+            href="https://www.youtube.com/@Astra_Krynix"
+            target="_blank">
+            ▶ SUBSCRIBE
+            </a>
+
+            <a
+            class="btn btn-secondary"
+            href="https://discord.gg/nqyaVPUU8"
+            target="_blank">
+            💬 JOIN DISCORD
+            </a>
+
+        </div>
+
     </div>
-  </section>
 
-  <footer>
-    © <span id="year"></span> Astra_Krynix. All rights reserved.
-  </footer>
+</section>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  
-    const welcomeOverlay = document.getElementById("welcomeOverlay");
-    const welcomeClose = document.getElementById("welcomeClose");
-    function closeWelcome() { welcomeOverlay.classList.add("hidden"); }
-    welcomeClose.addEventListener("click", closeWelcome);
-    welcomeOverlay.addEventListener("click", (event) => { if (event.target === welcomeOverlay) closeWelcome(); });
-    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeWelcome(); });
 
-  </script>
+<!-- FOOTER -->
+<footer>
+
+    © 2026 <span>Astra_Krynix</span> — Gaming Universe
+
+</footer>
+
+
+<!-- WELCOME POPUP -->
+<div class="popup" id="popup">
+
+    <div class="popup-box">
+
+        <h2>⚡ ASTRA_KRYNIX</h2>
+
+        <p>
+            Welcome to the gaming universe.
+            Ready to enter?
+        </p>
+
+        <div class="close" onclick="closePopup()">
+            ENTER WEBSITE
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function closePopup(){
+    document.getElementById("popup").style.display="none";
+}
+
+</script>
+
 </body>
 </html>
