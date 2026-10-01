@@ -7,119 +7,168 @@
 <title>Astra_Krynix | Gaming</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-}
-
-html{
     scroll-behavior:smooth;
 }
 
 body{
-    min-height:100vh;
-    background:#03040a;
-    color:#fff;
     font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(0,255,255,.12),transparent 25%),
+        radial-gradient(circle at 85% 30%,rgba(140,0,255,.14),transparent 28%),
+        radial-gradient(circle at 50% 90%,rgba(0,140,255,.10),transparent 30%),
+        linear-gradient(135deg,#030712,#050816 45%,#02030a);
+    color:white;
     overflow-x:hidden;
 }
 
 /* =========================
-   BACKGROUND
+   GAMING GRID
 ========================= */
 
 body::before{
     content:"";
     position:fixed;
     inset:0;
-    z-index:-5;
+    pointer-events:none;
+    z-index:-2;
 
     background-image:
-        linear-gradient(rgba(0,255,255,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,255,255,.035) 1px,transparent 1px);
+        linear-gradient(rgba(0,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,255,255,.045) 1px,transparent 1px);
 
-    background-size:45px 45px;
+    background-size:55px 55px;
+
+    transform:
+        perspective(600px)
+        rotateX(55deg)
+        scale(1.8);
+
+    transform-origin:center bottom;
+    opacity:.55;
 }
+
+/* =========================
+   GAMING ATMOSPHERE
+========================= */
 
 body::after{
     content:"";
     position:fixed;
-    width:500px;
-    height:500px;
-    top:-180px;
-    right:-100px;
+    inset:-30%;
+    pointer-events:none;
+    z-index:-3;
 
-    background:#7c3cff;
-    filter:blur(180px);
-    opacity:.15;
+    background:
+        radial-gradient(circle at 30% 40%,
+        rgba(0,255,255,.10),
+        transparent 20%),
 
-    z-index:-4;
+        radial-gradient(circle at 70% 60%,
+        rgba(120,0,255,.12),
+        transparent 22%);
+
+    animation:gamingAtmosphere 10s ease-in-out infinite alternate;
 }
 
+@keyframes gamingAtmosphere{
+
+    0%{
+        transform:translate(-3%,-2%) scale(1);
+    }
+
+    100%{
+        transform:translate(3%,2%) scale(1.08);
+    }
+}
 
 /* =========================
-   DIRECT MOUSE GLOW
+   NEON HORIZON
+========================= */
+
+.gaming-line{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:12%;
+    height:1px;
+
+    background:
+        linear-gradient(
+        90deg,
+        transparent,
+        #00ffff,
+        #7b2cff,
+        #00ffff,
+        transparent
+        );
+
+    box-shadow:
+        0 0 10px #00ffff,
+        0 0 30px rgba(0,255,255,.5);
+
+    opacity:.35;
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* =========================
+   CURSOR GLOW
 ========================= */
 
 #cursorGlow{
     position:fixed;
 
-    left:0;
-    top:0;
-
-    width:260px;
-    height:260px;
-
-    pointer-events:none;
+    width:280px;
+    height:280px;
 
     border-radius:50%;
 
-    background:radial-gradient(
+    background:
+        radial-gradient(
         circle,
-        rgba(0,255,255,.30) 0%,
-        rgba(0,255,255,.16) 25%,
-        rgba(0,255,255,.07) 48%,
-        transparent 72%
-    );
+        rgba(0,255,255,.20) 0%,
+        rgba(0,255,255,.09) 25%,
+        rgba(0,255,255,.03) 45%,
+        transparent 70%
+        );
+
+    pointer-events:none;
 
     transform:translate(-50%,-50%);
 
-    filter:blur(10px);
-
     z-index:99999;
-
-    /* IMPORTANT:
-       NO transition here.
-       This makes it follow the mouse instantly.
-    */
 }
 
 #cursorPoint{
     position:fixed;
 
-    left:0;
-    top:0;
-
-    width:9px;
-    height:9px;
-
-    pointer-events:none;
+    width:8px;
+    height:8px;
 
     border-radius:50%;
 
     background:#00ffff;
 
     box-shadow:
-        0 0 7px #00ffff,
-        0 0 18px #00ffff,
+        0 0 8px #00ffff,
+        0 0 20px #00ffff,
         0 0 35px #00ffff;
+
+    pointer-events:none;
 
     transform:translate(-50%,-50%);
 
     z-index:100000;
 }
-
 
 /* =========================
    NAVBAR
@@ -129,66 +178,56 @@ nav{
     position:fixed;
     top:0;
     left:0;
-
     width:100%;
 
-    padding:20px 7%;
+    padding:20px 8%;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    background:rgba(3,4,10,.72);
+    background:rgba(2,5,15,.65);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(15px);
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(0,255,255,.10);
 
     z-index:1000;
 }
 
 .logo{
-    color:white;
-    text-decoration:none;
-
-    font-size:22px;
+    font-size:24px;
     font-weight:900;
-
     letter-spacing:1px;
-}
 
-.logo span{
     color:#00ffff;
 
     text-shadow:
-        0 0 10px #00ffff,
-        0 0 25px #00ffff;
+        0 0 10px rgba(0,255,255,.7),
+        0 0 25px rgba(0,255,255,.35);
 }
 
 nav ul{
     display:flex;
-    gap:30px;
-
+    gap:28px;
     list-style:none;
 }
 
-nav ul a{
-    color:#aaa;
-
+nav a{
+    color:#cbd5e1;
     text-decoration:none;
-
     font-size:14px;
+    font-weight:bold;
 
     transition:.25s;
 }
 
-nav ul a:hover{
+nav a:hover{
     color:#00ffff;
 
     text-shadow:
-        0 0 12px #00ffff;
+        0 0 10px #00ffff;
 }
-
 
 /* =========================
    HERO
@@ -198,93 +237,123 @@ nav ul a:hover{
     min-height:100vh;
 
     display:flex;
+    flex-direction:column;
     justify-content:center;
     align-items:center;
 
     text-align:center;
 
     padding:120px 20px 70px;
+
+    position:relative;
 }
 
-.heroContent{
-    max-width:950px;
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+        circle,
+        rgba(0,255,255,.10),
+        transparent 65%
+        );
+
+    filter:blur(10px);
+
+    z-index:-1;
 }
 
 .badge{
-    display:inline-block;
-
-    padding:10px 20px;
-
-    border-radius:50px;
-
-    color:#00ffff;
-
-    background:rgba(0,255,255,.06);
+    padding:8px 18px;
 
     border:1px solid rgba(0,255,255,.35);
 
-    font-size:12px;
+    border-radius:30px;
 
-    letter-spacing:2px;
+    background:rgba(0,255,255,.06);
 
-    margin-bottom:28px;
+    color:#67ffff;
+
+    font-size:13px;
+
+    margin-bottom:25px;
 
     box-shadow:
-        0 0 25px rgba(0,255,255,.08);
+        0 0 20px rgba(0,255,255,.08);
 }
 
 .hero h1{
-    font-size:clamp(50px,9vw,105px);
+    font-size:clamp(48px,9vw,105px);
 
-    line-height:1;
+    line-height:.95;
 
-    letter-spacing:3px;
+    font-weight:1000;
 
-    margin-bottom:25px;
+    letter-spacing:-4px;
+
+    background:
+        linear-gradient(
+        90deg,
+        #ffffff,
+        #00ffff,
+        #8b5cf6,
+        #ffffff
+        );
+
+    background-size:250%;
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    animation:titleGlow 5s linear infinite;
 }
 
-.hero h1 span{
-    color:#00ffff;
+@keyframes titleGlow{
 
-    text-shadow:
-        0 0 10px #00ffff,
-        0 0 30px #00ffff,
-        0 0 70px rgba(0,255,255,.55);
+    0%{
+        background-position:0%;
+    }
+
+    100%{
+        background-position:250%;
+    }
 }
 
 .hero p{
-    max-width:680px;
+    max-width:650px;
 
-    margin:auto;
+    margin-top:25px;
 
-    color:#999;
+    color:#94a3b8;
 
-    line-height:1.8;
+    font-size:17px;
 
-    font-size:16px;
+    line-height:1.7;
 }
-
-
-/* =========================
-   BUTTONS
-========================= */
 
 .buttons{
     display:flex;
 
-    justify-content:center;
-
     gap:15px;
+
+    margin-top:35px;
 
     flex-wrap:wrap;
 
-    margin-top:35px;
+    justify-content:center;
 }
 
 .btn{
-    display:inline-block;
-
-    padding:14px 28px;
+    padding:14px 25px;
 
     border-radius:10px;
 
@@ -293,306 +362,270 @@ nav ul a:hover{
     font-weight:bold;
 
     transition:.25s;
+
+    display:inline-block;
 }
 
 .primary{
-    color:#001010;
+    color:#001014;
 
     background:#00ffff;
 
     box-shadow:
-        0 0 20px rgba(0,255,255,.4);
+        0 0 15px rgba(0,255,255,.4);
 }
 
 .primary:hover{
-    transform:translateY(-4px);
+    transform:translateY(-4px) scale(1.03);
 
     box-shadow:
-        0 0 20px #00ffff,
-        0 0 45px rgba(0,255,255,.5);
+        0 0 25px rgba(0,255,255,.8),
+        0 0 50px rgba(0,255,255,.25);
 }
 
 .secondary{
     color:white;
 
-    background:rgba(255,255,255,.04);
-
     border:1px solid rgba(255,255,255,.15);
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(10px);
 }
 
 .secondary:hover{
-    color:#00ffff;
-
     border-color:#00ffff;
 
-    transform:translateY(-4px);
+    color:#00ffff;
 
-    box-shadow:
-        0 0 25px rgba(0,255,255,.18);
+    transform:translateY(-4px);
 }
 
-
 /* =========================
-   SECTIONS
+   SECTION
 ========================= */
 
 section{
-    padding:100px 7%;
+    padding:100px 8%;
 }
 
-.title{
+.section-title{
     text-align:center;
 
-    margin-bottom:55px;
+    margin-bottom:50px;
 }
 
-.title h2{
-    font-size:36px;
+.section-title h2{
+    font-size:42px;
 
-    letter-spacing:2px;
+    margin-bottom:10px;
 }
 
-.title h2 span{
-    color:#00ffff;
-
-    text-shadow:
-        0 0 15px rgba(0,255,255,.6);
+.section-title p{
+    color:#64748b;
 }
-
-.title p{
-    color:#777;
-
-    margin-top:10px;
-}
-
 
 /* =========================
-   CARDS
+   GAME CARDS
 ========================= */
 
-.cards{
-    max-width:1100px;
-
-    margin:auto;
-
+.games{
     display:grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(auto-fit,minmax(230px,1fr));
 
-    gap:25px;
+    gap:22px;
+
+    max-width:1100px;
+
+    margin:auto;
 }
 
 .card{
     position:relative;
 
-    padding:35px 28px;
+    padding:30px;
 
     min-height:230px;
 
-    border-radius:20px;
+    border-radius:18px;
 
     background:
         linear-gradient(
-            145deg,
-            rgba(255,255,255,.07),
-            rgba(255,255,255,.02)
+        145deg,
+        rgba(255,255,255,.08),
+        rgba(255,255,255,.025)
         );
 
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
+
+    backdrop-filter:blur(12px);
 
     overflow:hidden;
 
-    transition:.3s;
+    transition:.35s;
+}
+
+.card::before{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    right:-50px;
+    top:-50px;
+
+    background:#00ffff;
+
+    filter:blur(60px);
+
+    opacity:.15;
+
+    transition:.35s;
 }
 
 .card:hover{
     transform:
-        translateY(-9px)
+        translateY(-10px)
         scale(1.02);
 
-    border-color:
-        rgba(0,255,255,.55);
+    border-color:rgba(0,255,255,.5);
 
     box-shadow:
-        0 20px 50px rgba(0,255,255,.12);
+        0 15px 50px rgba(0,0,0,.35),
+        0 0 25px rgba(0,255,255,.10);
 }
 
-.cardIcon{
-    font-size:42px;
+.card:hover::before{
+    opacity:.35;
+}
+
+.card-icon{
+    font-size:45px;
 
     margin-bottom:20px;
 }
 
 .card h3{
-    margin-bottom:12px;
+    font-size:22px;
 
-    letter-spacing:1px;
+    margin-bottom:10px;
 }
 
 .card p{
-    color:#888;
+    color:#94a3b8;
 
-    line-height:1.7;
+    line-height:1.6;
 
     font-size:14px;
 }
-
 
 /* =========================
    ABOUT
 ========================= */
 
-.aboutBox{
-    max-width:950px;
+.about{
+    max-width:900px;
 
     margin:auto;
 
-    padding:50px 40px;
-
     text-align:center;
 
-    border-radius:25px;
+    padding:35px;
+
+    border-radius:20px;
 
     background:
-        rgba(255,255,255,.035);
+        rgba(255,255,255,.04);
 
     border:
         1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(12px);
 }
 
-.aboutBox h2{
+.about h2{
     margin-bottom:20px;
+
+    font-size:35px;
 }
 
-.aboutBox p{
-    color:#999;
+.about p{
+    color:#94a3b8;
 
-    line-height:1.9;
+    line-height:1.8;
+
+    font-size:16px;
 }
-
-.stats{
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:20px;
-
-    margin-top:35px;
-}
-
-.stat{
-    min-width:170px;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    transition:.25s;
-}
-
-.stat:hover{
-    border-color:#00ffff;
-
-    transform:translateY(-5px);
-
-    box-shadow:
-        0 0 25px rgba(0,255,255,.12);
-}
-
-.stat h3{
-    font-size:30px;
-
-    color:#00ffff;
-}
-
-.stat p{
-    color:#777;
-
-    font-size:12px;
-
-    margin-top:5px;
-}
-
 
 /* =========================
    CTA
 ========================= */
 
 .cta{
+    max-width:1000px;
+
+    margin:40px auto 0;
+
+    padding:60px 30px;
+
     text-align:center;
 
-    padding:100px 20px;
-}
-
-.ctaBox{
-    max-width:900px;
-
-    margin:auto;
-
-    padding:65px 30px;
-
-    border-radius:30px;
+    border-radius:25px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(0,255,255,.08),
-            rgba(124,60,255,.08)
+        radial-gradient(
+        circle at center,
+        rgba(0,255,255,.09),
+        rgba(124,58,237,.06),
+        transparent 70%
         );
 
-    border:
-        1px solid rgba(255,255,255,.1);
+    border:1px solid rgba(0,255,255,.15);
+
+    box-shadow:
+        inset 0 0 50px rgba(0,255,255,.025);
 }
 
-.ctaBox h2{
+.cta h2{
     font-size:38px;
 
     margin-bottom:15px;
 }
 
-.ctaBox p{
-    color:#999;
+.cta p{
+    color:#94a3b8;
 
     margin-bottom:30px;
 }
-
 
 /* =========================
    FOOTER
 ========================= */
 
 footer{
-    padding:30px;
-
     text-align:center;
 
-    color:#666;
+    padding:40px 20px;
+
+    color:#64748b;
 
     border-top:
-        1px solid rgba(255,255,255,.07);
-
-    font-size:13px;
+        1px solid rgba(255,255,255,.06);
 }
 
-footer span{
+footer strong{
     color:#00ffff;
 }
-
 
 /* =========================
    POPUP
 ========================= */
 
-#popup{
+.popup{
     position:fixed;
 
     inset:0;
@@ -600,228 +633,249 @@ footer span{
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
-    background:
-        rgba(0,0,0,.82);
+    background:rgba(0,0,0,.75);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(8px);
 
-    z-index:2000;
+    z-index:5000;
 }
 
-.popupBox{
-    width:min(450px,90%);
+.popup-box{
+    width:min(90%,450px);
 
-    padding:45px 30px;
+    padding:40px;
 
     text-align:center;
 
-    border-radius:25px;
+    border-radius:20px;
 
-    background:#0a0b15;
+    background:
+        linear-gradient(
+        145deg,
+        rgba(10,20,35,.96),
+        rgba(5,8,20,.96)
+        );
 
-    border:
-        1px solid rgba(0,255,255,.35);
+    border:1px solid rgba(0,255,255,.25);
 
     box-shadow:
-        0 0 60px rgba(0,255,255,.15);
+        0 0 60px rgba(0,255,255,.12);
 }
 
-.popupBox h2{
-    margin-bottom:15px;
-
+.popup-box h2{
     color:#00ffff;
 
-    text-shadow:
-        0 0 15px #00ffff;
+    margin-bottom:15px;
 }
 
-.popupBox p{
-    color:#888;
+.popup-box p{
+    color:#94a3b8;
+
+    line-height:1.6;
 
     margin-bottom:25px;
 }
 
-.enter{
-    display:inline-block;
+.popup-box button{
+    border:none;
 
-    padding:12px 28px;
+    padding:12px 25px;
 
-    border-radius:9px;
+    border-radius:8px;
 
     background:#00ffff;
 
-    color:#001010;
+    color:#001014;
 
     font-weight:bold;
 
     cursor:pointer;
 
-    transition:.25s;
-}
-
-.enter:hover{
-    transform:scale(1.05);
-
     box-shadow:
-        0 0 30px rgba(0,255,255,.6);
+        0 0 20px rgba(0,255,255,.35);
 }
-
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:800px){
+@media(max-width:700px){
 
     nav{
-        padding:17px 5%;
+        padding:16px 5%;
     }
 
     nav ul{
-        display:none;
+        gap:12px;
     }
 
-    .cards{
-        grid-template-columns:1fr;
+    nav a{
+        font-size:11px;
+    }
+
+    .logo{
+        font-size:18px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:15px;
     }
 
     section{
         padding:75px 5%;
     }
 
-    .aboutBox{
-        padding:35px 20px;
+    .section-title h2{
+        font-size:32px;
     }
 
-    .ctaBox h2{
-        font-size:28px;
+    .cta h2{
+        font-size:30px;
     }
+
+}
+
+/* Hide cursor effects on touch devices */
+
+@media(max-width:700px){
 
     #cursorGlow,
     #cursorPoint{
         display:none;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- DIRECT CURSOR EFFECT -->
+<!-- Gaming horizon -->
+<div class="gaming-line"></div>
 
+<!-- Cursor effects -->
 <div id="cursorGlow"></div>
 <div id="cursorPoint"></div>
 
 
-<!-- NAVBAR -->
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
 
-    <a href="#home" class="logo">
-        ASTRA<span>_KRYNIX</span>
-    </a>
+    <div class="logo">
+        Astra_Krynix
+    </div>
 
     <ul>
-
         <li>
-            <a href="#home">Home</a>
+            <a href="#home">HOME</a>
         </li>
 
         <li>
-            <a href="#games">Games</a>
+            <a href="#games">GAMES</a>
         </li>
 
         <li>
-            <a href="#about">About</a>
+            <a href="#about">ABOUT</a>
         </li>
 
         <li>
-            <a href="#contact">Contact</a>
+            <a href="#contact">CONTACT</a>
         </li>
-
     </ul>
 
 </nav>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section class="hero" id="home">
 
-    <div class="heroContent">
+    <div class="badge">
+        ⚡ GAMING • PVP • SHORTS
+    </div>
 
-        <div class="badge">
-            ⚡ GAMING • CONTENT • COMMUNITY
-        </div>
+    <h1>
+        Astra_Krynix
+    </h1>
 
-        <h1>
-            ASTRA<span>_KRYNIX</span>
-        </h1>
+    <p>
+        Welcome to my gaming zone.
+        Minecraft PvP, building, Free Fire,
+        gaming shorts and crazy moments.
+    </p>
 
-        <p>
-            Welcome to my gaming universe.
-            Minecraft, Free Fire, PvP, Shorts
-            and crazy gaming moments.
-        </p>
+    <div class="buttons">
 
-        <div class="buttons">
+        <a
+            class="btn primary"
+            href="https://www.youtube.com/@Astra_Krynix"
+            target="_blank"
+        >
+            ▶ WATCH YOUTUBE
+        </a>
 
-            <a
-                class="btn primary"
-                href="https://www.youtube.com/@Astra_Krynix"
-                target="_blank">
-                ▶ YouTube
-            </a>
-
-            <a
-                class="btn secondary"
-                href="https://discord.gg/nqyaVPUU8"
-                target="_blank">
-                💬 Discord
-            </a>
-
-        </div>
+        <a
+            class="btn secondary"
+            href="https://discord.gg/nqyaVPUU8"
+            target="_blank"
+        >
+            💬 JOIN DISCORD
+        </a>
 
     </div>
 
 </section>
 
 
-<!-- GAMES -->
+<!-- =========================
+     GAMES
+========================= -->
 
 <section id="games">
 
-    <div class="title">
+    <div class="section-title">
 
         <h2>
-            MY <span>GAMES</span>
+            MY GAMES
         </h2>
 
         <p>
-            What you can expect from Astra_Krynix
+            The games you will find on Astra_Krynix
         </p>
 
     </div>
 
 
-    <div class="cards">
+    <div class="games">
+
 
         <div class="card">
 
-            <div class="cardIcon">
+            <div class="card-icon">
                 ⛏️
             </div>
 
             <h3>
-                MINECRAFT
+                Minecraft
             </h3>
 
             <p>
                 PvP, building, SMP adventures,
-                crazy moments and Minecraft Shorts.
+                crazy clutches and Minecraft Shorts.
             </p>
 
         </div>
@@ -829,17 +883,17 @@ footer span{
 
         <div class="card">
 
-            <div class="cardIcon">
+            <div class="card-icon">
                 🔥
             </div>
 
             <h3>
-                FREE FIRE
+                Free Fire
             </h3>
 
             <p>
-                Fast gameplay, intense fights,
-                funny moments and gaming Shorts.
+                Fast gameplay, highlights,
+                funny moments and intense battles.
             </p>
 
         </div>
@@ -847,89 +901,74 @@ footer span{
 
         <div class="card">
 
-            <div class="cardIcon">
+            <div class="card-icon">
                 🎮
             </div>
 
             <h3>
-                GAMING
+                Gaming Shorts
             </h3>
 
             <p>
-                Different games, challenges,
-                experiments and entertaining content.
+                Quick gaming moments,
+                epic plays and entertaining Shorts.
             </p>
 
         </div>
 
+
     </div>
 
 </section>
 
 
-<!-- ABOUT -->
+<!-- =========================
+     ABOUT
+========================= -->
 
 <section id="about">
 
-    <div class="title">
+    <div class="section-title">
 
         <h2>
-            ABOUT <span>ME</span>
+            ABOUT ME
         </h2>
 
     </div>
 
 
-    <div class="aboutBox">
+    <div class="about">
 
         <h2>
-            WELCOME TO ASTRA_KRYNIX
+            Welcome to Astra_Krynix ⚡
         </h2>
 
         <p>
             I'm a gaming creator who loves Minecraft,
-            PvP, building and creating entertaining Shorts.
-            This website is my gaming hub.
+            PvP, building and creating entertaining
+            gaming Shorts. This website is my little
+            gaming headquarters.
         </p>
-
-
-        <div class="stats">
-
-            <div class="stat">
-                <h3>🎮</h3>
-                <p>GAMER</p>
-            </div>
-
-            <div class="stat">
-                <h3>⚡</h3>
-                <p>SHORTS CREATOR</p>
-            </div>
-
-            <div class="stat">
-                <h3>💎</h3>
-                <p>GAMING COMMUNITY</p>
-            </div>
-
-        </div>
 
     </div>
 
 </section>
 
 
-<!-- CONTACT -->
+<!-- =========================
+     CONTACT / CTA
+========================= -->
 
-<section class="cta" id="contact">
+<section id="contact">
 
-    <div class="ctaBox">
+    <div class="cta">
 
         <h2>
-            JOIN THE COMMUNITY
+            READY TO ENTER THE GAME?
         </h2>
 
         <p>
-            Watch the videos, join Discord and
-            become part of the Astra_Krynix journey.
+            Follow Astra_Krynix and join the community.
         </p>
 
         <div class="buttons">
@@ -937,15 +976,17 @@ footer span{
             <a
                 class="btn primary"
                 href="https://www.youtube.com/@Astra_Krynix"
-                target="_blank">
-                ▶ SUBSCRIBE
+                target="_blank"
+            >
+                YOUTUBE
             </a>
 
             <a
                 class="btn secondary"
                 href="https://discord.gg/nqyaVPUU8"
-                target="_blank">
-                💬 JOIN DISCORD
+                target="_blank"
+            >
+                DISCORD
             </a>
 
         </div>
@@ -955,39 +996,39 @@ footer span{
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
     © 2026
-    <span>Astra_Krynix</span>
-    — Gaming Universe
+    <strong>Astra_Krynix</strong>
+    • Gaming Website
 
 </footer>
 
 
-<!-- POPUP -->
+<!-- =========================
+     WELCOME POPUP
+========================= -->
 
-<div id="popup">
+<div class="popup" id="popup">
 
-    <div class="popupBox">
+    <div class="popup-box">
 
         <h2>
-            ⚡ ASTRA_KRYNIX
+            ⚡ Welcome Gamer!
         </h2>
 
         <p>
-            Welcome to the gaming universe.
-            Ready to enter?
+            Welcome to the official
+            Astra_Krynix gaming zone.
         </p>
 
-        <div
-            class="enter"
-            onclick="closePopup()">
-
+        <button onclick="closePopup()">
             ENTER WEBSITE
-
-        </div>
+        </button>
 
     </div>
 
@@ -997,18 +1038,7 @@ footer span{
 <script>
 
 /* =========================
-   POPUP
-========================= */
-
-function closePopup(){
-
-    document.getElementById("popup").style.display="none";
-
-}
-
-
-/* =========================
-   INSTANT MOUSE GLOW
+   CURSOR FOLLOW
 ========================= */
 
 const glow =
@@ -1021,15 +1051,6 @@ const point =
 document.addEventListener(
     "mousemove",
     function(e){
-
-        /*
-        No animation.
-        No transition.
-        No delay.
-
-        It directly follows
-        the mouse position.
-        */
 
         glow.style.left =
             e.clientX + "px";
@@ -1045,23 +1066,51 @@ document.addEventListener(
             e.clientY + "px";
 
     },
-    { passive:true }
+    {passive:true}
 );
 
 
-/* Hide cursor effect on touch devices */
+/* =========================
+   TOUCH DEVICES
+========================= */
 
 document.addEventListener(
     "touchstart",
     function(){
 
         glow.style.display="none";
-
         point.style.display="none";
 
     },
-    { passive:true }
+    {passive:true}
 );
+
+
+/* =========================
+   POPUP
+========================= */
+
+function closePopup(){
+
+    document.getElementById("popup").style.display="none";
+
+}
+
+
+/* =========================
+   AUTO CLOSE POPUP
+========================= */
+
+setTimeout(function(){
+
+    const popup =
+        document.getElementById("popup");
+
+    if(popup){
+        popup.style.display="none";
+    }
+
+},5000);
 
 </script>
 
