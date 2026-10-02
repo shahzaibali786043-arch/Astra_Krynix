@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Astra_Krynix | Gaming</title>
 
-<!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-/* =========================
-   RESET
-========================= */
-
 *{
     margin:0;
     padding:0;
@@ -25,1483 +18,749 @@
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-
-    background:
-        radial-gradient(circle at 15% 20%,rgba(0,255,255,.12),transparent 25%),
-        radial-gradient(circle at 85% 30%,rgba(140,0,255,.14),transparent 28%),
-        radial-gradient(circle at 50% 90%,rgba(0,140,255,.10),transparent 30%),
-        linear-gradient(135deg,#030712,#050816 45%,#02030a);
-
+    background:#02040a;
     color:white;
     overflow-x:hidden;
 }
 
-
-/* =========================
-   GAMING GRID
-========================= */
+/* ================= BACKGROUND ================= */
 
 body::before{
     content:"";
-
     position:fixed;
     inset:0;
-
-    pointer-events:none;
-    z-index:-2;
-
-    background-image:
-        linear-gradient(rgba(0,255,255,.045) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,255,255,.045) 1px,transparent 1px);
-
-    background-size:55px 55px;
-
-    transform:
-        perspective(600px)
-        rotateX(55deg)
-        scale(1.8);
-
-    transform-origin:center bottom;
-
-    opacity:.55;
+    z-index:-5;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(0,255,255,.12),transparent 28%),
+        radial-gradient(circle at 80% 30%,rgba(140,0,255,.13),transparent 30%),
+        radial-gradient(circle at 50% 90%,rgba(0,140,255,.10),transparent 30%),
+        #02040a;
 }
-
-
-/* =========================
-   GAMING ATMOSPHERE
-========================= */
 
 body::after{
     content:"";
-
     position:fixed;
-    inset:-30%;
-
-    pointer-events:none;
-    z-index:-3;
-
+    inset:0;
+    z-index:-4;
     background:
-        radial-gradient(
-            circle at 30% 40%,
-            rgba(0,255,255,.10),
-            transparent 20%
-        ),
-
-        radial-gradient(
-            circle at 70% 60%,
-            rgba(120,0,255,.12),
-            transparent 22%
-        );
-
-    animation:
-        gamingAtmosphere 10s ease-in-out infinite alternate;
-}
-
-@keyframes gamingAtmosphere{
-
-    0%{
-        transform:translate(-3%,-2%) scale(1);
-    }
-
-    100%{
-        transform:translate(3%,2%) scale(1.08);
-    }
-}
-
-
-/* =========================
-   NEON HORIZON
-========================= */
-
-.gaming-line{
-    position:fixed;
-
-    left:0;
-    right:0;
-    bottom:12%;
-
-    height:1px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #00ffff,
-            #7b2cff,
-            #00ffff,
-            transparent
-        );
-
-    box-shadow:
-        0 0 10px #00ffff,
-        0 0 30px rgba(0,255,255,.5);
-
+        linear-gradient(rgba(0,255,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,255,255,.035) 1px,transparent 1px);
+    background-size:60px 60px;
+    transform:perspective(500px) rotateX(55deg) scale(1.7);
+    transform-origin:center bottom;
     opacity:.35;
-
     pointer-events:none;
-
-    z-index:-1;
 }
 
-
-/* =========================
-   CURSOR GLOW
-========================= */
+/* ================= CURSOR ================= */
 
 #cursorGlow{
-
     position:fixed;
-
+    left:0;
+    top:0;
     width:280px;
     height:280px;
-
     border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(0,255,255,.20) 0%,
-            rgba(0,255,255,.09) 25%,
-            rgba(0,255,255,.03) 45%,
-            transparent 70%
-        );
-
     pointer-events:none;
+    z-index:9998;
 
-    transform:translate(-50%,-50%);
+    background:radial-gradient(
+        circle,
+        rgba(0,255,255,.18) 0%,
+        rgba(0,255,255,.08) 25%,
+        rgba(0,255,255,.025) 48%,
+        transparent 72%
+    );
 
-    z-index:99999;
-
-    transition:
-        left .08s linear,
-        top .08s linear;
+    transform:translate3d(-50%,-50%,0);
+    will-change:transform;
 }
 
-
 #cursorPoint{
-
     position:fixed;
-
+    left:0;
+    top:0;
     width:8px;
     height:8px;
-
     border-radius:50%;
-
     background:#00ffff;
-
     box-shadow:
         0 0 8px #00ffff,
         0 0 20px #00ffff,
-        0 0 35px #00ffff;
+        0 0 40px rgba(0,255,255,.8);
 
     pointer-events:none;
+    z-index:9999;
 
-    transform:translate(-50%,-50%);
-
-    z-index:100000;
-
-    transition:
-        left .04s linear,
-        top .04s linear;
+    transform:translate3d(-50%,-50%,0);
+    will-change:transform;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
+/* ================= NAVBAR ================= */
 
 nav{
-
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
-
-    padding:20px 8%;
-
+    height:72px;
     display:flex;
-
-    justify-content:space-between;
     align-items:center;
-
-    background:rgba(2,5,15,.65);
-
-    backdrop-filter:blur(15px);
-
-    border-bottom:
-        1px solid rgba(0,255,255,.10);
-
+    justify-content:space-between;
+    padding:0 7%;
     z-index:1000;
-}
 
+    background:rgba(2,4,10,.65);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(0,255,255,.12);
+}
 
 .logo{
-
-    font-size:24px;
-
+    font-size:22px;
     font-weight:900;
-
-    letter-spacing:1px;
-
-    color:#00ffff;
-
+    letter-spacing:2px;
+    color:#fff;
     text-shadow:
-        0 0 10px rgba(0,255,255,.7),
-        0 0 25px rgba(0,255,255,.35);
+        0 0 8px #00ffff,
+        0 0 25px rgba(0,255,255,.5);
 }
 
+.logo span{
+    color:#00ffff;
+}
 
 nav ul{
-
     display:flex;
-
-    gap:28px;
-
+    gap:30px;
     list-style:none;
 }
 
-
-nav a{
-
-    color:#cbd5e1;
-
+nav ul li a{
+    color:#b9c8d6;
     text-decoration:none;
-
-    font-size:14px;
-
+    font-size:13px;
     font-weight:bold;
-
+    letter-spacing:1.5px;
     transition:.25s;
 }
 
-
-nav a:hover{
-
+nav ul li a:hover{
     color:#00ffff;
-
-    text-shadow:
-        0 0 10px #00ffff;
+    text-shadow:0 0 12px #00ffff;
 }
 
-
-/* =========================
-   HERO
-========================= */
+/* ================= HERO ================= */
 
 .hero{
-
     min-height:100vh;
-
     display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
     align-items:center;
-
+    justify-content:center;
     text-align:center;
-
-    padding:
-        120px 20px 70px;
-
+    padding:120px 20px 80px;
     position:relative;
 }
 
-
-.hero::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:500px;
-    height:500px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(0,255,255,.10),
-            transparent 65%
-        );
-
-    filter:blur(10px);
-
-    z-index:-1;
+.hero-content{
+    max-width:900px;
 }
-
 
 .badge{
-
-    padding:8px 18px;
-
-    border:
-        1px solid rgba(0,255,255,.35);
-
+    display:inline-block;
+    padding:10px 18px;
+    border:1px solid rgba(0,255,255,.4);
     border-radius:30px;
-
-    background:
-        rgba(0,255,255,.06);
-
-    color:#67ffff;
-
-    font-size:13px;
-
+    color:#00ffff;
+    background:rgba(0,255,255,.05);
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+    box-shadow:0 0 25px rgba(0,255,255,.08);
     margin-bottom:25px;
-
-    box-shadow:
-        0 0 20px rgba(0,255,255,.08);
 }
-
 
 .hero h1{
-
-    font-size:
-        clamp(48px,9vw,105px);
-
-    line-height:.95;
-
+    font-size:clamp(55px,10vw,125px);
+    line-height:.9;
     font-weight:1000;
+    letter-spacing:-5px;
 
-    letter-spacing:-4px;
+    background:linear-gradient(
+        90deg,
+        #fff,
+        #00ffff,
+        #9b4dff,
+        #fff
+    );
 
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #00ffff,
-            #8b5cf6,
-            #ffffff
-        );
-
-    background-size:250%;
-
+    background-size:300%;
     -webkit-background-clip:text;
     background-clip:text;
-
     color:transparent;
 
-    animation:
-        titleGlow 5s linear infinite;
+    animation:titleGlow 7s linear infinite;
 }
-
 
 @keyframes titleGlow{
-
-    0%{
-        background-position:0%;
-    }
-
-    100%{
-        background-position:250%;
-    }
+    0%{background-position:0%}
+    100%{background-position:300%}
 }
-
 
 .hero p{
-
     max-width:650px;
-
-    margin-top:25px;
-
-    color:#94a3b8;
-
+    margin:30px auto;
+    color:#aab7c5;
     font-size:17px;
-
-    line-height:1.7;
+    line-height:1.8;
 }
-
 
 .buttons{
-
     display:flex;
-
-    gap:15px;
-
-    margin-top:35px;
-
-    flex-wrap:wrap;
-
     justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
 }
-
 
 .btn{
-
-    padding:14px 25px;
-
-    border-radius:10px;
-
     text-decoration:none;
-
-    font-weight:bold;
-
-    transition:.25s;
-
-    display:inline-block;
-}
-
-
-.primary{
-
-    color:#001014;
-
-    background:#00ffff;
-
-    box-shadow:
-        0 0 15px rgba(0,255,255,.4);
-}
-
-
-.primary:hover{
-
-    transform:
-        translateY(-4px)
-        scale(1.03);
-
-    box-shadow:
-        0 0 25px rgba(0,255,255,.8),
-        0 0 50px rgba(0,255,255,.25);
-}
-
-
-.secondary{
-
     color:white;
-
-    border:
-        1px solid rgba(255,255,255,.15);
-
-    background:
-        rgba(255,255,255,.05);
-
-    backdrop-filter:blur(10px);
+    padding:14px 25px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+    border:1px solid rgba(0,255,255,.35);
+    background:rgba(0,255,255,.05);
+    transition:.3s;
 }
 
-
-.secondary:hover{
-
-    border-color:#00ffff;
-
-    color:#00ffff;
-
+.btn:hover{
     transform:translateY(-4px);
+    background:rgba(0,255,255,.12);
+    box-shadow:
+        0 0 20px rgba(0,255,255,.2),
+        inset 0 0 20px rgba(0,255,255,.04);
+    color:#00ffff;
 }
 
+.btn.primary{
+    background:#00ffff;
+    color:#02040a;
+    border-color:#00ffff;
+}
 
-/* =========================
-   SECTION
-========================= */
+.btn.primary:hover{
+    color:#02040a;
+    box-shadow:
+        0 0 20px #00ffff,
+        0 0 50px rgba(0,255,255,.4);
+}
+
+/* ================= SECTIONS ================= */
 
 section{
-
-    padding:100px 8%;
+    padding:100px 7%;
+    position:relative;
 }
-
 
 .section-title{
-
     text-align:center;
-
-    margin-bottom:50px;
+    margin-bottom:55px;
 }
-
 
 .section-title h2{
-
     font-size:42px;
-
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
-
 
 .section-title p{
-
-    color:#64748b;
+    color:#8292a3;
 }
 
-
-/* =========================
-   GAME CARDS
-========================= */
+/* ================= GAME CARDS ================= */
 
 .games{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(230px,1fr));
-
-    gap:22px;
-
-    max-width:1100px;
-
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    max-width:1200px;
     margin:auto;
 }
 
-
-.card{
-
+.game-card{
     position:relative;
-
-    padding:30px;
-
-    min-height:230px;
-
+    padding:35px;
+    min-height:250px;
+    border:1px solid rgba(0,255,255,.12);
     border-radius:18px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.08),
-            rgba(255,255,255,.025)
+            rgba(0,255,255,.06),
+            rgba(140,0,255,.04)
         );
 
-    border:
-        1px solid rgba(255,255,255,.10);
-
-    backdrop-filter:blur(12px);
-
     overflow:hidden;
-
     transition:.35s;
 }
 
-
-.card::before{
-
+.game-card::before{
     content:"";
-
     position:absolute;
-
-    width:120px;
-    height:120px;
-
-    right:-50px;
-    top:-50px;
-
+    width:150px;
+    height:150px;
     background:#00ffff;
-
-    filter:blur(60px);
-
-    opacity:.15;
-
-    transition:.35s;
+    filter:blur(80px);
+    opacity:.08;
+    top:-50px;
+    right:-50px;
 }
 
-
-.card:hover{
-
-    transform:
-        translateY(-10px)
-        scale(1.02);
-
-    border-color:
-        rgba(0,255,255,.5);
-
+.game-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(0,255,255,.5);
     box-shadow:
         0 15px 50px rgba(0,0,0,.35),
-        0 0 25px rgba(0,255,255,.10);
+        0 0 30px rgba(0,255,255,.08);
 }
 
-
-.card:hover::before{
-
-    opacity:.35;
-}
-
-
-.card-icon{
-
-    font-size:45px;
-
+.game-icon{
+    font-size:42px;
     margin-bottom:20px;
 }
 
-
-.card h3{
-
-    font-size:22px;
-
-    margin-bottom:10px;
+.game-card h3{
+    font-size:24px;
+    margin-bottom:12px;
 }
 
-
-.card p{
-
-    color:#94a3b8;
-
-    line-height:1.6;
-
-    font-size:14px;
+.game-card p{
+    color:#8998a8;
+    line-height:1.7;
 }
 
+/* ================= ABOUT ================= */
 
-/* =========================
-   ABOUT
-========================= */
-
-.about{
-
+.about-box{
     max-width:900px;
-
     margin:auto;
-
     text-align:center;
-
-    padding:35px;
-
+    padding:45px;
     border-radius:20px;
 
-    background:
-        rgba(255,255,255,.04);
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(0,255,255,.1);
 
-    border:
-        1px solid rgba(255,255,255,.08);
-
-    backdrop-filter:blur(12px);
+    box-shadow:0 0 60px rgba(0,255,255,.03);
 }
 
-
-.about h2{
-
-    margin-bottom:20px;
-
-    font-size:35px;
-}
-
-
-.about p{
-
-    color:#94a3b8;
-
-    line-height:1.8;
-
+.about-box p{
+    color:#a6b3c0;
+    line-height:1.9;
     font-size:16px;
 }
 
+/* ================= CHAT ================= */
 
-/* =========================================================
-   ONLINE CHAT
-========================================================= */
+#chat{
+    padding-top:120px;
+}
 
 .chat-container{
-
-    max-width:950px;
-
+    max-width:850px;
     margin:auto;
 
-    border-radius:22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.08),
-            rgba(255,255,255,.025)
-        );
-
-    border:
-        1px solid rgba(0,255,255,.18);
-
-    backdrop-filter:blur(18px);
-
+    border:1px solid rgba(0,255,255,.18);
+    border-radius:20px;
     overflow:hidden;
 
+    background:rgba(3,7,15,.75);
     box-shadow:
-        0 0 40px rgba(0,255,255,.07),
-        inset 0 0 30px rgba(0,255,255,.02);
+        0 0 50px rgba(0,255,255,.05),
+        inset 0 0 40px rgba(0,255,255,.015);
+
+    backdrop-filter:blur(15px);
 }
-
-
-/* CHAT HEADER */
 
 .chat-header{
-
     padding:22px 25px;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.08);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,255,255,.07),
-            rgba(124,58,237,.06)
-        );
+    border-bottom:1px solid rgba(0,255,255,.12);
 
     display:flex;
-
+    align-items:center;
     justify-content:space-between;
-
-    align-items:center;
 }
 
-
-.chat-title{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
+.chat-header h3{
+    font-size:20px;
 }
 
-
-.chat-icon{
-
-    width:43px;
-    height:43px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:12px;
-
-    background:
-        rgba(0,255,255,.08);
-
-    border:
-        1px solid rgba(0,255,255,.18);
-
-    font-size:22px;
-
-    box-shadow:
-        0 0 18px rgba(0,255,255,.08);
-}
-
-
-.chat-header strong{
-
-    display:block;
-
-    font-size:18px;
-}
-
-
-.chat-header small{
-
-    display:block;
-
-    margin-top:5px;
-
-    color:#64748b;
-
+.online{
+    color:#00ff99;
     font-size:12px;
-}
-
-
-.online-status{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    color:#00ff9d;
-
-    font-size:12px;
-
     font-weight:bold;
 }
 
-
-.online-dot{
-
+.online::before{
+    content:"";
+    display:inline-block;
     width:8px;
     height:8px;
-
     border-radius:50%;
-
-    background:#00ff9d;
-
-    box-shadow:
-        0 0 8px #00ff9d,
-        0 0 15px #00ff9d;
-
-    animation:
-        onlinePulse 1.5s infinite;
+    background:#00ff99;
+    box-shadow:0 0 10px #00ff99;
+    margin-right:7px;
 }
 
-
-@keyframes onlinePulse{
-
-    0%,100%{
-        opacity:1;
-    }
-
-    50%{
-        opacity:.35;
-    }
-}
-
-
-/* CHAT MESSAGES */
-
-.chat-messages{
-
-    height:430px;
-
+.messages{
+    height:420px;
     overflow-y:auto;
-
-    padding:25px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-    scroll-behavior:smooth;
+    padding:20px;
 }
 
-
-.chat-messages::-webkit-scrollbar{
-
+.messages::-webkit-scrollbar{
     width:6px;
 }
 
-
-.chat-messages::-webkit-scrollbar-track{
-
-    background:rgba(255,255,255,.02);
-}
-
-
-.chat-messages::-webkit-scrollbar-thumb{
-
-    background:
-        linear-gradient(
-            #00ffff,
-            #7b2cff
-        );
-
+.messages::-webkit-scrollbar-thumb{
+    background:#00ffff;
     border-radius:10px;
 }
 
+.message{
+    padding:13px 16px;
+    margin-bottom:12px;
 
-.chat-message{
-
-    max-width:75%;
-
-    padding:12px 15px;
-
-    border-radius:13px;
-
-    background:
-        rgba(0,255,255,.055);
-
-    border:
-        1px solid rgba(0,255,255,.10);
-
-    animation:
-        chatMessageIn .25s ease;
-
-    word-wrap:break-word;
+    border-left:2px solid #00ffff;
+    background:rgba(0,255,255,.035);
+    border-radius:8px;
 }
 
-
-@keyframes chatMessageIn{
-
-    from{
-        opacity:0;
-        transform:translateY(8px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-
-.chat-username{
-
+.message-name{
     color:#00ffff;
-
-    font-size:12px;
-
+    font-size:13px;
     font-weight:bold;
-
     margin-bottom:5px;
 }
 
-
-.chat-text{
-
-    color:#e2e8f0;
-
-    font-size:14px;
-
+.message-text{
+    color:#d4dde6;
     line-height:1.5;
+    word-break:break-word;
 }
 
-
-.chat-time{
-
-    margin-top:6px;
-
-    color:#64748b;
-
-    font-size:10px;
-}
-
-
-.chat-loading{
-
-    text-align:center;
-
-    color:#64748b;
-
-    padding:40px;
-}
-
-
-/* EMPTY CHAT */
-
-.chat-empty{
-
-    min-height:300px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    color:#64748b;
-}
-
-
-.chat-empty-icon{
-
-    font-size:45px;
-
-    margin-bottom:12px;
-
-    opacity:.5;
-}
-
-
-.chat-empty p{
-
-    font-size:14px;
-}
-
-
-/* CHAT INPUT */
-
-.chat-input-area{
-
+.chat-input{
+    display:grid;
+    grid-template-columns:150px 1fr 90px;
+    gap:10px;
     padding:18px;
 
-    display:grid;
-
-    grid-template-columns:150px 1fr 105px;
-
-    gap:10px;
-
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
-    background:
-        rgba(0,0,0,.18);
+    border-top:1px solid rgba(0,255,255,.12);
 }
 
-
-.chat-input-area input{
-
+.chat-input input{
     width:100%;
+    padding:14px;
 
-    padding:13px 14px;
-
-    border-radius:9px;
-
-    outline:none;
-
-    border:
-        1px solid rgba(255,255,255,.10);
-
-    background:
-        rgba(0,0,0,.35);
+    background:#050a12;
+    border:1px solid rgba(0,255,255,.15);
+    border-radius:8px;
 
     color:white;
-
-    font-size:13px;
-
-    transition:.2s;
+    outline:none;
 }
 
-
-.chat-input-area input::placeholder{
-
-    color:#64748b;
-}
-
-
-.chat-input-area input:focus{
-
+.chat-input input:focus{
     border-color:#00ffff;
-
-    box-shadow:
-        0 0 15px rgba(0,255,255,.12);
+    box-shadow:0 0 15px rgba(0,255,255,.08);
 }
 
-
-.chat-input-area button{
-
+.chat-input button{
     border:none;
-
-    border-radius:9px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-
-    color:#001014;
-
+    border-radius:8px;
     background:#00ffff;
+    color:#02040a;
+    font-weight:900;
+    cursor:pointer;
+    transition:.25s;
+}
 
-    transition:.2s;
-
+.chat-input button:hover{
     box-shadow:
-        0 0 15px rgba(0,255,255,.25);
+        0 0 15px #00ffff,
+        0 0 30px rgba(0,255,255,.3);
+    transform:translateY(-2px);
 }
 
-
-.chat-input-area button:hover{
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 0 25px rgba(0,255,255,.55);
+.chat-input button:disabled{
+    opacity:.5;
+    cursor:not-allowed;
 }
 
+/* ================= CONTACT ================= */
 
-.chat-input-area button:active{
-
-    transform:
-        scale(.96);
-}
-
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-
-    max-width:1000px;
-
-    margin:40px auto 0;
-
+.contact-box{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
     padding:60px 30px;
 
-    text-align:center;
-
-    border-radius:25px;
+    border:1px solid rgba(140,0,255,.18);
+    border-radius:20px;
 
     background:
         radial-gradient(
             circle at center,
-            rgba(0,255,255,.09),
-            rgba(124,58,237,.06),
-            transparent 70%
+            rgba(100,0,255,.08),
+            transparent 60%
         );
-
-    border:
-        1px solid rgba(0,255,255,.15);
-
-    box-shadow:
-        inset 0 0 50px rgba(0,255,255,.025);
 }
 
-
-.cta h2{
-
-    font-size:38px;
-
+.contact-box h2{
+    font-size:40px;
     margin-bottom:15px;
 }
 
-
-.cta p{
-
-    color:#94a3b8;
-
-    margin-bottom:30px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-
-    text-align:center;
-
-    padding:40px 20px;
-
-    color:#64748b;
-
-    border-top:
-        1px solid rgba(255,255,255,.06);
-}
-
-
-footer strong{
-
-    color:#00ffff;
-}
-
-
-/* =========================
-   POPUP
-========================= */
-
-.popup{
-
-    position:fixed;
-
-    inset:0;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:
-        rgba(0,0,0,.75);
-
-    backdrop-filter:blur(8px);
-
-    z-index:5000;
-}
-
-
-.popup-box{
-
-    width:min(90%,450px);
-
-    padding:40px;
-
-    text-align:center;
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(10,20,35,.96),
-            rgba(5,8,20,.96)
-        );
-
-    border:
-        1px solid rgba(0,255,255,.25);
-
-    box-shadow:
-        0 0 60px rgba(0,255,255,.12);
-}
-
-
-.popup-box h2{
-
-    color:#00ffff;
-
-    margin-bottom:15px;
-}
-
-
-.popup-box p{
-
-    color:#94a3b8;
-
-    line-height:1.6;
-
+.contact-box p{
+    color:#8f9dad;
     margin-bottom:25px;
 }
 
+/* ================= FOOTER ================= */
 
-.popup-box button{
-
-    border:none;
-
-    padding:12px 25px;
-
-    border-radius:8px;
-
-    background:#00ffff;
-
-    color:#001014;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    box-shadow:
-        0 0 20px rgba(0,255,255,.35);
+footer{
+    text-align:center;
+    padding:35px 20px;
+    color:#647281;
+    border-top:1px solid rgba(255,255,255,.06);
+    font-size:13px;
 }
 
+footer span{
+    color:#00ffff;
+}
 
-/* =========================
-   MOBILE
-========================= */
+/* ================= POPUP ================= */
 
-@media(max-width:700px){
+.popup{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) scale(.8);
+
+    width:min(90%,420px);
+    padding:35px;
+
+    background:#050a12;
+    border:1px solid rgba(0,255,255,.35);
+    border-radius:18px;
+
+    text-align:center;
+    z-index:2000;
+
+    box-shadow:
+        0 0 60px rgba(0,255,255,.15);
+
+    opacity:0;
+    pointer-events:none;
+    transition:.35s;
+}
+
+.popup.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
+    margin-bottom:12px;
+}
+
+.popup p{
+    color:#8998a8;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.popup button{
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    background:#00ffff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:850px){
 
     nav{
-
-        padding:16px 5%;
+        padding:0 20px;
     }
-
 
     nav ul{
-
-        gap:10px;
-
-        flex-wrap:wrap;
-
-        justify-content:flex-end;
+        gap:12px;
     }
 
-
-    nav a{
-
+    nav ul li a{
         font-size:10px;
     }
 
-
-    .logo{
-
-        font-size:18px;
+    .games{
+        grid-template-columns:1fr;
     }
-
 
     .hero h1{
-
-        letter-spacing:-2px;
+        letter-spacing:-3px;
     }
 
-
-    .hero p{
-
-        font-size:15px;
+    .chat-input{
+        grid-template-columns:1fr;
     }
 
+    .chat-input button{
+        height:48px;
+    }
+}
+
+@media(max-width:550px){
+
+    nav{
+        height:62px;
+    }
+
+    .logo{
+        font-size:17px;
+    }
+
+    nav ul{
+        gap:8px;
+    }
+
+    nav ul li a{
+        font-size:8px;
+    }
 
     section{
-
-        padding:75px 5%;
+        padding:80px 20px;
     }
 
-
     .section-title h2{
-
         font-size:32px;
     }
 
-
-    .cta h2{
-
-        font-size:30px;
+    .hero{
+        padding-top:100px;
     }
 
-
-    .chat-header{
-
-        padding:18px;
+    .hero p{
+        font-size:14px;
     }
 
-
-    .chat-messages{
-
-        height:380px;
-
-        padding:15px;
+    .about-box{
+        padding:30px 20px;
     }
 
-
-    .chat-input-area{
-
-        grid-template-columns:1fr;
-
-        padding:15px;
-    }
-
-
-    .chat-input-area button{
-
-        padding:13px;
-    }
-
-
-    .chat-message{
-
-        max-width:90%;
-    }
-
-
-    .online-status{
-
-        display:none;
+    .messages{
+        height:350px;
     }
 }
 
+/* Disable custom cursor on touch devices */
 
-/* Hide cursor effects on touch devices */
-
-@media(max-width:700px){
-
+@media(pointer:coarse){
     #cursorGlow,
     #cursorPoint{
-
         display:none;
     }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- Gaming horizon -->
-
-<div class="gaming-line"></div>
-
-
-<!-- Cursor effects -->
-
+<!-- CURSOR -->
 <div id="cursorGlow"></div>
-
 <div id="cursorPoint"></div>
 
-
-
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- NAVBAR -->
 
 <nav>
-
     <div class="logo">
-        Astra_Krynix
+        Astra<span>_Krynix</span>
     </div>
 
-
     <ul>
-
-        <li>
-            <a href="#home">
-                HOME
-            </a>
-        </li>
-
-        <li>
-            <a href="#games">
-                GAMES
-            </a>
-        </li>
-
-        <li>
-            <a href="#chat">
-                CHAT
-            </a>
-        </li>
-
-        <li>
-            <a href="#about">
-                ABOUT
-            </a>
-        </li>
-
-        <li>
-            <a href="#contact">
-                CONTACT
-            </a>
-        </li>
-
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#games">GAMES</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#chat">CHAT</a></li>
+        <li><a href="#contact">CONTACT</a></li>
     </ul>
-
 </nav>
 
 
-
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <section class="hero" id="home">
 
-    <div class="badge">
-        ⚡ GAMING • PVP • SHORTS
-    </div>
+    <div class="hero-content">
 
+        <div class="badge">
+            ⚡ GAMING • PVP • SHORTS
+        </div>
 
-    <h1>
-        Astra_Krynix
-    </h1>
+        <h1>Astra_Krynix</h1>
 
+        <p>
+            Welcome to my gaming world.
+            Minecraft, Free Fire, PvP, crazy moments
+            and gaming Shorts — all in one place.
+        </p>
 
-    <p>
-        Welcome to my gaming zone.
-        Minecraft PvP, building, Free Fire,
-        gaming shorts and crazy moments.
-    </p>
+        <div class="buttons">
 
+            <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                class="btn primary"
+            >
+                ▶ YouTube
+            </a>
 
-    <div class="buttons">
+            <a
+                href="https://discord.com/"
+                target="_blank"
+                class="btn"
+            >
+                Discord
+            </a>
 
-        <a
-            class="btn primary"
-            href="https://www.youtube.com/@Astra_Krynix"
-            target="_blank"
-        >
-            ▶ WATCH YOUTUBE
-        </a>
+            <a
+                href="#chat"
+                class="btn"
+            >
+                💬 Live Chat
+            </a>
 
-
-        <a
-            class="btn secondary"
-            href="https://discord.gg/nqyaVPUU8"
-            target="_blank"
-        >
-            💬 JOIN DISCORD
-        </a>
+        </div>
 
     </div>
 
 </section>
 
 
-
-<!-- =========================
-     GAMES
-========================= -->
+<!-- GAMES -->
 
 <section id="games">
 
     <div class="section-title">
 
-        <h2>
-            MY GAMES
-        </h2>
+        <h2>Gaming Zone</h2>
 
         <p>
-            The games you will find on Astra_Krynix
+            My main gaming content
         </p>
 
     </div>
@@ -1509,81 +768,92 @@ footer strong{
 
     <div class="games">
 
+        <div class="game-card">
 
-        <div class="card">
+            <div class="game-icon">⛏️</div>
 
-            <div class="card-icon">
-                ⛏️
-            </div>
-
-            <h3>
-                Minecraft
-            </h3>
+            <h3>Minecraft</h3>
 
             <p>
-                PvP, building, SMP adventures,
+                PvP, building, SMPs, servers,
                 crazy clutches and Minecraft Shorts.
             </p>
 
         </div>
 
 
-        <div class="card">
+        <div class="game-card">
 
-            <div class="card-icon">
-                🔥
-            </div>
+            <div class="game-icon">🔥</div>
 
-            <h3>
-                Free Fire
-            </h3>
+            <h3>Free Fire</h3>
 
             <p>
-                Fast gameplay, highlights,
-                funny moments and intense battles.
+                Fast gameplay, intense fights,
+                highlights and crazy gaming moments.
             </p>
 
         </div>
 
 
-        <div class="card">
+        <div class="game-card">
 
-            <div class="card-icon">
-                🎮
-            </div>
+            <div class="game-icon">⚡</div>
 
-            <h3>
-                Gaming Shorts
-            </h3>
+            <h3>Gaming Shorts</h3>
 
             <p>
-                Quick gaming moments,
-                epic plays and entertaining Shorts.
+                Short, fast and entertaining
+                gaming clips made for the community.
             </p>
 
         </div>
-
 
     </div>
 
 </section>
 
 
+<!-- ABOUT -->
 
-<!-- =====================================================
-     ONLINE CHAT
-===================================================== -->
+<section id="about">
+
+    <div class="section-title">
+
+        <h2>About Me</h2>
+
+        <p>
+            Welcome to Astra_Krynix
+        </p>
+
+    </div>
+
+
+    <div class="about-box">
+
+        <p>
+            I'm Astra_Krynix — a gaming creator focused on
+            Minecraft, Free Fire, PvP and Shorts.
+            This website is my personal gaming hub where
+            you can check my content, connect with the
+            community and chat with other players.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- CHAT -->
 
 <section id="chat">
 
     <div class="section-title">
 
-        <h2>
-            💬 ONLINE CHAT
-        </h2>
+        <h2>Community Chat</h2>
 
         <p>
-            Talk with the Astra_Krynix community in real time.
+            Talk with other Astra_Krynix players
         </p>
 
     </div>
@@ -1591,89 +861,54 @@ footer strong{
 
     <div class="chat-container">
 
-
-        <!-- CHAT HEADER -->
-
         <div class="chat-header">
 
-            <div class="chat-title">
+            <h3>💬 Astra_Krynix Chat</h3>
 
-                <div class="chat-icon">
-                    💬
-                </div>
-
-                <div>
-
-                    <strong>
-                        Astra_Krynix Community
-                    </strong>
-
-                    <small>
-                        Real-time community chat
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <div class="online-status">
-
-                <span class="online-dot"></span>
-
+            <div class="online">
                 ONLINE
-
             </div>
 
         </div>
 
-
-
-        <!-- MESSAGES -->
 
         <div
-            id="chatMessages"
-            class="chat-messages"
+            class="messages"
+            id="messages"
         >
-
-            <div class="chat-loading">
-                Connecting to chat...
+            <div
+                style="
+                    text-align:center;
+                    color:#647281;
+                    padding:30px;
+                "
+            >
+                Loading messages...
             </div>
-
         </div>
 
 
-
-        <!-- INPUT -->
-
-        <div class="chat-input-area">
-
+        <div class="chat-input">
 
             <input
                 type="text"
                 id="username"
                 maxlength="20"
-                placeholder="Username..."
-                autocomplete="off"
+                placeholder="Username"
             >
-
 
             <input
                 type="text"
-                id="messageInput"
+                id="message"
                 maxlength="300"
                 placeholder="Type your message..."
-                autocomplete="off"
             >
-
 
             <button
-                id="sendButton"
-                type="button"
+                id="sendBtn"
             >
-                SEND ⚡
+                SEND
             </button>
-
 
         </div>
 
@@ -1682,82 +917,35 @@ footer strong{
 </section>
 
 
-
-<!-- =========================
-     ABOUT
-========================= -->
-
-<section id="about">
-
-    <div class="section-title">
-
-        <h2>
-            ABOUT ME
-        </h2>
-
-    </div>
-
-
-    <div class="about">
-
-        <h2>
-            Welcome to Astra_Krynix ⚡
-        </h2>
-
-
-        <p>
-
-            I'm a gaming creator who loves Minecraft,
-            PvP, building and creating entertaining
-            gaming Shorts. This website is my little
-            gaming headquarters.
-
-        </p>
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================
-     CONTACT / CTA
-========================= -->
+<!-- CONTACT -->
 
 <section id="contact">
 
-    <div class="cta">
+    <div class="contact-box">
 
-        <h2>
-            READY TO ENTER THE GAME?
-        </h2>
-
+        <h2>Join The Community</h2>
 
         <p>
-            Follow Astra_Krynix and join the community.
+            Follow the journey and connect with Astra_Krynix.
         </p>
-
 
         <div class="buttons">
 
-
             <a
+                href="https://www.youtube.com/"
+                target="_blank"
                 class="btn primary"
-                href="https://www.youtube.com/@Astra_Krynix"
-                target="_blank"
             >
-                YOUTUBE
+                YouTube
             </a>
-
 
             <a
-                class="btn secondary"
-                href="https://discord.gg/nqyaVPUU8"
+                href="https://discord.com/"
                 target="_blank"
+                class="btn"
             >
-                DISCORD
+                Discord
             </a>
-
 
         </div>
 
@@ -1766,72 +954,48 @@ footer strong{
 </section>
 
 
-
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
     © 2026
-
-    <strong>
-        Astra_Krynix
-    </strong>
-
-    • Gaming Website
+    <span>Astra_Krynix</span>
+    — Gaming Community
 
 </footer>
 
 
-
-<!-- =========================
-     WELCOME POPUP
-========================= -->
+<!-- WELCOME POPUP -->
 
 <div
     class="popup"
-    id="popup"
+    id="welcomePopup"
 >
 
-    <div class="popup-box">
+    <h2>⚡ Welcome!</h2>
 
-        <h2>
-            ⚡ Welcome Gamer!
-        </h2>
+    <p>
+        Welcome to the official Astra_Krynix gaming website.
+    </p>
 
-
-        <p>
-            Welcome to the official
-            Astra_Krynix gaming zone.
-        </p>
-
-
-        <button
-            onclick="closePopup()"
-        >
-            ENTER WEBSITE
-        </button>
-
-    </div>
+    <button id="closePopup">
+        ENTER
+    </button>
 
 </div>
 
 
-
 <script>
 
-/* =====================================================
-   SUPABASE CONFIG
-===================================================== */
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
     "https://jqsnlypqjdpvhxgvhneo.supabase.co";
 
-
 const SUPABASE_KEY =
     "sb_publishable_EznlnFZcxCivBuP11mZhlQ_gJnU3G5h";
-
 
 const supabaseClient =
     window.supabase.createClient(
@@ -1840,354 +1004,142 @@ const supabaseClient =
     );
 
 
-
-/* =====================================================
-   CURSOR FOLLOW
-===================================================== */
-
-const glow =
-    document.getElementById("cursorGlow");
-
-
-const point =
-    document.getElementById("cursorPoint");
-
-
-document.addEventListener(
-    "mousemove",
-    function(e){
-
-        glow.style.left =
-            e.clientX + "px";
-
-        glow.style.top =
-            e.clientY + "px";
-
-
-        point.style.left =
-            e.clientX + "px";
-
-        point.style.top =
-            e.clientY + "px";
-
-    },
-    {passive:true}
-);
-
-
-
-/* =====================================================
-   TOUCH DEVICES
-===================================================== */
-
-document.addEventListener(
-    "touchstart",
-    function(){
-
-        glow.style.display="none";
-
-        point.style.display="none";
-
-    },
-    {passive:true}
-);
-
-
-
-/* =====================================================
-   POPUP
-===================================================== */
-
-function closePopup(){
-
-    document
-        .getElementById("popup")
-        .style.display="none";
-
-}
-
-
-setTimeout(
-    function(){
-
-        const popup =
-            document.getElementById("popup");
-
-
-        if(popup){
-
-            popup.style.display="none";
-
-        }
-
-    },
-    5000
-);
-
-
-
-/* =====================================================
+/* =========================================================
    CHAT
-===================================================== */
+========================================================= */
 
-const chatMessages =
-    document.getElementById(
-        "chatMessages"
-    );
-
+const messagesBox =
+    document.getElementById("messages");
 
 const usernameInput =
-    document.getElementById(
-        "username"
-    );
-
+    document.getElementById("username");
 
 const messageInput =
-    document.getElementById(
-        "messageInput"
-    );
+    document.getElementById("message");
+
+const sendBtn =
+    document.getElementById("sendBtn");
 
 
-const sendButton =
-    document.getElementById(
-        "sendButton"
-    );
-
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
+/* HTML SECURITY */
 
 function escapeHTML(text){
 
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        text;
-
-    return div.innerHTML;
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
 
 
+/* DISPLAY MESSAGE */
 
-/* =====================================================
-   FORMAT MESSAGE
-===================================================== */
+function addMessage(msg){
 
-function createMessageElement(message){
+    const empty =
+        messagesBox.querySelector(
+            '[data-empty="true"]'
+        );
+
+    if(empty){
+        empty.remove();
+    }
 
     const div =
         document.createElement("div");
 
-
-    div.className =
-        "chat-message";
-
-
-    const username =
-        escapeHTML(
-            message.username
-        );
-
-
-    const text =
-        escapeHTML(
-            message.message
-        );
-
-
-    const date =
-        new Date(
-            message.created_at
-        );
-
-
-    const time =
-        date.toLocaleTimeString(
-            [],
-            {
-                hour:"2-digit",
-                minute:"2-digit"
-            }
-        );
-
+    div.className = "message";
 
     div.innerHTML = `
-
-        <div class="chat-username">
-            ${username}
+        <div class="message-name">
+            ${escapeHTML(msg.username)}
         </div>
 
-        <div class="chat-text">
-            ${text}
+        <div class="message-text">
+            ${escapeHTML(msg.message)}
         </div>
-
-        <div class="chat-time">
-            ${time}
-        </div>
-
     `;
 
+    messagesBox.appendChild(div);
 
-    return div;
-
+    messagesBox.scrollTop =
+        messagesBox.scrollHeight;
 }
 
 
-
-/* =====================================================
-   ADD MESSAGE
-===================================================== */
-
-function addMessage(message){
-
-    const element =
-        createMessageElement(
-            message
-        );
-
-
-    chatMessages.appendChild(
-        element
-    );
-
-
-    scrollChat();
-
-}
-
-
-
-/* =====================================================
-   SCROLL CHAT
-===================================================== */
-
-function scrollChat(){
-
-    chatMessages.scrollTop =
-        chatMessages.scrollHeight;
-
-}
-
-
-
-/* =====================================================
-   LOAD OLD MESSAGES
-===================================================== */
+/* LOAD OLD MESSAGES */
 
 async function loadMessages(){
 
-    try{
+    const { data, error } =
+        await supabaseClient
+        .from("messages")
+        .select("*")
+        .order("created_at", {
+            ascending:true
+        })
+        .limit(100);
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-
-                .from("messages")
-
-                .select("*")
-
-                .order(
-                    "created_at",
-                    {
-                        ascending:true
-                    }
-                );
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        chatMessages.innerHTML = "";
-
-
-        if(!data || data.length === 0){
-
-            chatMessages.innerHTML = `
-
-                <div class="chat-empty">
-
-                    <div class="chat-empty-icon">
-                        💬
-                    </div>
-
-                    <p>
-                        No messages yet.
-                        Be the first to say hello!
-                    </p>
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        data.forEach(
-            addMessage
-        );
-
-
-        scrollChat();
-
-
-    }catch(error){
+    if(error){
 
         console.error(
             "Chat loading error:",
             error
         );
 
-
-        chatMessages.innerHTML = `
-
-            <div class="chat-empty">
-
-                <div class="chat-empty-icon">
-                    ⚠️
-                </div>
-
-                <p>
-                    Unable to connect to chat.
-                </p>
-
+        messagesBox.innerHTML = `
+            <div
+                data-empty="true"
+                style="
+                    text-align:center;
+                    color:#ff6b6b;
+                    padding:30px;
+                "
+            >
+                Unable to load chat.
             </div>
-
         `;
 
+        return;
     }
+
+    messagesBox.innerHTML = "";
+
+    if(!data || data.length === 0){
+
+        messagesBox.innerHTML = `
+            <div
+                data-empty="true"
+                style="
+                    text-align:center;
+                    color:#647281;
+                    padding:30px;
+                "
+            >
+                No messages yet. Be the first!
+            </div>
+        `;
+
+        return;
+    }
+
+    data.forEach(addMessage);
 
 }
 
 
-
-/* =====================================================
-   SEND MESSAGE
-===================================================== */
+/* SEND MESSAGE */
 
 async function sendMessage(){
 
     const username =
-        usernameInput
-            .value
-            .trim();
-
+        usernameInput.value.trim();
 
     const message =
-        messageInput
-            .value
-            .trim();
+        messageInput.value.trim();
 
 
     if(!username){
@@ -2195,7 +1147,6 @@ async function sendMessage(){
         usernameInput.focus();
 
         return;
-
     }
 
 
@@ -2204,124 +1155,105 @@ async function sendMessage(){
         messageInput.focus();
 
         return;
-
     }
 
 
-    if(username.length > 20){
+    if(
+        username.length < 1 ||
+        username.length > 20
+    ){
 
         alert(
-            "Username maximum 20 characters ka ho sakta hai."
+            "Username must be 1-20 characters."
         );
 
         return;
-
     }
 
 
-    if(message.length > 300){
+    if(
+        message.length < 1 ||
+        message.length > 300
+    ){
 
         alert(
-            "Message maximum 300 characters ka ho sakta hai."
+            "Message must be 1-300 characters."
         );
 
         return;
-
     }
 
 
-    sendButton.disabled =
-        true;
+    sendBtn.disabled = true;
+
+    sendBtn.textContent =
+        "...";
 
 
-    sendButton.textContent =
-        "SENDING...";
+    const { data, error } =
+        await supabaseClient
+        .from("messages")
+        .insert([
+            {
+                username:username,
+                message:message
+            }
+        ])
+        .select()
+        .single();
 
 
-    try{
-
-        const {
-            error
-        } =
-            await supabaseClient
-
-                .from("messages")
-
-                .insert({
-
-                    username:
-                        username,
-
-                    message:
-                        message
-
-                });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        messageInput.value =
-            "";
-
-
-        messageInput.focus();
-
-
-    }catch(error){
+    if(error){
 
         console.error(
-            "Send error:",
+            "Send message error:",
             error
         );
 
-
         alert(
-            "Message send nahi ho saka."
+            "Message send nahi hua. Please try again."
         );
+
+    }else{
+
+        messageInput.value = "";
+
+        /*
+          Realtime normally adds it automatically.
+          If realtime event arrives, it will appear.
+        */
 
     }
 
 
-    sendButton.disabled =
-        false;
+    sendBtn.disabled = false;
 
-
-    sendButton.textContent =
-        "SEND ⚡";
+    sendBtn.textContent =
+        "SEND";
 
 }
 
 
+/* BUTTON */
 
-/* =====================================================
-   SEND BUTTON
-===================================================== */
-
-sendButton.addEventListener(
+sendBtn.addEventListener(
     "click",
     sendMessage
 );
 
 
-
-/* =====================================================
-   ENTER TO SEND
-===================================================== */
+/* ENTER TO SEND */
 
 messageInput.addEventListener(
     "keydown",
-    function(event){
+    function(e){
 
         if(
-            event.key === "Enter"
+            e.key === "Enter" &&
+            !e.shiftKey
         ){
 
-            event.preventDefault();
+            e.preventDefault();
 
             sendMessage();
 
@@ -2331,72 +1263,187 @@ messageInput.addEventListener(
 );
 
 
+/* REALTIME CHAT */
 
-/* =====================================================
-   REALTIME CHAT
-===================================================== */
+supabaseClient
+.channel("messages-realtime")
+.on(
+    "postgres_changes",
+    {
+        event:"INSERT",
+        schema:"public",
+        table:"messages"
+    },
+    function(payload){
 
-const realtimeChannel =
-    supabaseClient
-
-        .channel(
-            "astra-krynix-live-chat"
-        )
-
-
-        .on(
-
-            "postgres_changes",
-
-            {
-                event:"INSERT",
-                schema:"public",
-                table:"messages"
-            },
-
-            function(payload){
-
-                const empty =
-                    chatMessages.querySelector(
-                        ".chat-empty"
-                    );
-
-
-                if(empty){
-
-                    chatMessages.innerHTML =
-                        "";
-
-                }
-
-
-                addMessage(
-                    payload.new
-                );
-
-            }
-
-        )
-
-
-        .subscribe(
-            function(status){
-
-                console.log(
-                    "Chat realtime:",
-                    status
-                );
-
-            }
+        addMessage(
+            payload.new
         );
 
+    }
+)
+.subscribe();
 
 
-/* =====================================================
-   START CHAT
-===================================================== */
+/* LOAD */
 
 loadMessages();
+
+
+/* =========================================================
+   SUPER SMOOTH CURSOR
+========================================================= */
+
+const glow =
+    document.getElementById(
+        "cursorGlow"
+    );
+
+const point =
+    document.getElementById(
+        "cursorPoint"
+    );
+
+
+let mouseX =
+    window.innerWidth / 2;
+
+let mouseY =
+    window.innerHeight / 2;
+
+
+/*
+   We only update the target position
+   here. The actual rendering happens
+   once per animation frame.
+*/
+
+document.addEventListener(
+    "mousemove",
+    function(e){
+
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+function animateCursor(){
+
+    /*
+       DIRECT tracking.
+
+       No CSS left/top transition.
+       No delayed animation.
+
+       requestAnimationFrame keeps
+       it smooth at the monitor refresh rate.
+    */
+
+    point.style.transform =
+        `translate3d(
+            ${mouseX}px,
+            ${mouseY}px,
+            0
+        ) translate(-50%, -50%)`;
+
+
+    glow.style.transform =
+        `translate3d(
+            ${mouseX}px,
+            ${mouseY}px,
+            0
+        ) translate(-50%, -50%)`;
+
+
+    requestAnimationFrame(
+        animateCursor
+    );
+
+}
+
+
+animateCursor();
+
+
+/* =========================================================
+   WELCOME POPUP
+========================================================= */
+
+const popup =
+    document.getElementById(
+        "welcomePopup"
+    );
+
+const closePopup =
+    document.getElementById(
+        "closePopup"
+    );
+
+
+/*
+   Show popup only once per browser.
+*/
+
+if(
+    !sessionStorage.getItem(
+        "astraWelcome"
+    )
+){
+
+    setTimeout(
+        function(){
+
+            popup.classList.add(
+                "active"
+            );
+
+        },
+        700
+    );
+
+}
+
+
+closePopup.addEventListener(
+    "click",
+    function(){
+
+        popup.classList.remove(
+            "active"
+        );
+
+        sessionStorage.setItem(
+            "astraWelcome",
+            "true"
+        );
+
+    }
+);
+
+
+/* ESC CLOSE */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Escape"
+        ){
+
+            popup.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
 
 </script>
 
