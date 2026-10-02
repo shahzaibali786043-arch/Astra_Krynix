@@ -124,7 +124,7 @@ nav{
 
 nav ul{
     display:flex;
-    gap:30px;
+    gap:22px;
     list-style:none;
     align-items:center;
 }
@@ -132,9 +132,9 @@ nav ul{
 nav ul li a{
     color:#b9c8d6;
     text-decoration:none;
-    font-size:13px;
+    font-size:12px;
     font-weight:bold;
-    letter-spacing:1.5px;
+    letter-spacing:1.3px;
     transition:.25s;
 }
 
@@ -143,7 +143,7 @@ nav ul li a:hover{
     text-shadow:0 0 12px #00ffff;
 }
 
-/* ================= USERNAME BUTTON ================= */
+/* ================= USERNAME ================= */
 
 .username-nav{
     display:flex;
@@ -170,6 +170,44 @@ nav ul li a:hover{
         0 0 15px rgba(0,255,255,.25),
         inset 0 0 15px rgba(0,255,255,.05);
     transform:translateY(-2px);
+}
+
+.user-badge{
+    display:none;
+    align-items:center;
+    gap:8px;
+    padding:7px 10px;
+    border:1px solid rgba(0,255,255,.15);
+    border-radius:9px;
+    background:rgba(0,255,255,.035);
+    cursor:pointer;
+}
+
+.user-badge.show{
+    display:flex;
+}
+
+.user-avatar{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#00ffff;
+    color:#02040a;
+    font-size:11px;
+    font-weight:1000;
+}
+
+.user-name{
+    max-width:90px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    color:#d9faff;
+    font-size:11px;
+    font-weight:bold;
 }
 
 /* ================= HERO ================= */
@@ -360,6 +398,218 @@ section{
     line-height:1.7;
 }
 
+/* ================= 2 PLAYER FIGHTING ================= */
+
+#duel{
+    padding-top:120px;
+}
+
+.duel-container{
+    max-width:1050px;
+    margin:auto;
+    padding:25px;
+    border:1px solid rgba(0,255,255,.16);
+    border-radius:24px;
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0,255,255,.08),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(140,0,255,.09),
+            transparent 35%
+        ),
+        rgba(3,7,15,.82);
+    box-shadow:
+        0 0 60px rgba(0,255,255,.06),
+        inset 0 0 40px rgba(0,255,255,.025);
+    backdrop-filter:blur(12px);
+}
+
+.duel-top{
+    display:grid;
+    grid-template-columns:1fr 150px 1fr;
+    align-items:center;
+    gap:20px;
+    margin-bottom:18px;
+}
+
+.fighter-info span{
+    display:block;
+    color:#00ffff;
+    font-weight:1000;
+    font-size:13px;
+    letter-spacing:2px;
+    margin-bottom:7px;
+}
+
+.p2-info{
+    text-align:right;
+}
+
+.p2-info span{
+    color:#b56cff;
+}
+
+.health-wrap{
+    height:18px;
+    width:100%;
+    background:#080d16;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:inset 0 0 10px rgba(0,0,0,.7);
+}
+
+.health-bar{
+    height:100%;
+    width:100%;
+    transition:width .18s ease;
+}
+
+.p1-health{
+    background:linear-gradient(
+        90deg,
+        #00ffff,
+        #008cff
+    );
+    box-shadow:0 0 15px #00ffff;
+}
+
+.p2-health{
+    margin-left:auto;
+    background:linear-gradient(
+        90deg,
+        #8d35ff,
+        #ff3bd4
+    );
+    box-shadow:0 0 15px #a84dff;
+}
+
+.fighter-info small{
+    display:block;
+    color:#596979;
+    margin-top:6px;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.fight-status{
+    text-align:center;
+    color:#fff;
+    font-size:22px;
+    font-weight:1000;
+    letter-spacing:2px;
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 25px #00ffff;
+}
+
+.duel-game{
+    position:relative;
+    width:100%;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(0,255,255,.18);
+    background:#02050b;
+}
+
+#fightCanvas{
+    display:block;
+    width:100%;
+    height:auto;
+    background:#02050b;
+}
+
+.fight-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,3,10,.78);
+    backdrop-filter:blur(5px);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+}
+
+.fight-overlay.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.winner-text{
+    font-size:clamp(28px,5vw,55px);
+    font-weight:1000;
+    color:#fff;
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 30px #00ffff,
+        0 0 60px #8d35ff;
+    margin-bottom:25px;
+}
+
+.fight-overlay button,
+.start-fight{
+    border:none;
+    border-radius:10px;
+    padding:14px 25px;
+    background:#00ffff;
+    color:#02040a;
+    font-weight:1000;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.fight-overlay button:hover,
+.start-fight:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 0 20px #00ffff,
+        0 0 45px rgba(0,255,255,.4);
+}
+
+.controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:18px;
+}
+
+.controls > div{
+    padding:15px;
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:12px;
+    background:rgba(255,255,255,.025);
+}
+
+.controls strong{
+    color:#00ffff;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.controls div:nth-child(2) strong{
+    color:#b56cff;
+}
+
+.controls p{
+    color:#728293;
+    font-size:11px;
+    margin-top:7px;
+    line-height:1.6;
+}
+
+.start-fight{
+    display:block;
+    margin:20px auto 0;
+}
+
 /* ================= ABOUT ================= */
 
 .about-box{
@@ -518,10 +768,8 @@ section{
     align-items:center;
     justify-content:center;
     padding:20px;
-
     background:rgba(0,0,0,.72);
     backdrop-filter:blur(12px);
-
     opacity:0;
     visibility:hidden;
     transition:.3s;
@@ -536,10 +784,8 @@ section{
     position:relative;
     width:min(100%,430px);
     padding:38px;
-
     border:1px solid rgba(0,255,255,.35);
     border-radius:22px;
-
     background:
         radial-gradient(
             circle at top right,
@@ -552,11 +798,9 @@ section{
             transparent 35%
         ),
         #050a12;
-
     box-shadow:
         0 0 70px rgba(0,255,255,.13),
         inset 0 0 35px rgba(0,255,255,.025);
-
     transform:translateY(25px) scale(.96);
     transition:.3s;
 }
@@ -569,16 +813,12 @@ section{
     position:absolute;
     top:15px;
     right:17px;
-
     width:34px;
     height:34px;
-
     border:1px solid rgba(255,255,255,.12);
     border-radius:50%;
-
     background:rgba(255,255,255,.04);
     color:#aab7c5;
-
     cursor:pointer;
     font-size:18px;
     transition:.2s;
@@ -596,7 +836,6 @@ section{
     font-weight:1000;
     letter-spacing:2px;
     margin-bottom:8px;
-
     text-shadow:
         0 0 10px #00ffff,
         0 0 25px rgba(0,255,255,.35);
@@ -630,12 +869,10 @@ section{
     width:100%;
     padding:14px 15px;
     border-radius:9px;
-
     border:1px solid rgba(0,255,255,.14);
     background:#03070d;
     color:white;
     outline:none;
-
     transition:.2s;
 }
 
@@ -650,17 +887,13 @@ section{
     width:100%;
     padding:14px;
     margin-top:5px;
-
     border:none;
     border-radius:10px;
-
     background:#00ffff;
     color:#02040a;
-
     font-weight:1000;
     letter-spacing:1px;
     cursor:pointer;
-
     transition:.25s;
 }
 
@@ -687,46 +920,6 @@ section{
     line-height:1.5;
 }
 
-/* ================= USER BADGE ================= */
-
-.user-badge{
-    display:none;
-    align-items:center;
-    gap:8px;
-    padding:7px 10px;
-    border:1px solid rgba(0,255,255,.15);
-    border-radius:9px;
-    background:rgba(0,255,255,.035);
-    cursor:pointer;
-}
-
-.user-badge.show{
-    display:flex;
-}
-
-.user-avatar{
-    width:25px;
-    height:25px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#00ffff;
-    color:#02040a;
-    font-size:11px;
-    font-weight:1000;
-}
-
-.user-name{
-    max-width:90px;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    color:#d9faff;
-    font-size:11px;
-    font-weight:bold;
-}
-
 /* ================= CONTACT ================= */
 
 .contact-box{
@@ -734,10 +927,8 @@ section{
     margin:auto;
     text-align:center;
     padding:60px 30px;
-
     border:1px solid rgba(140,0,255,.18);
     border-radius:20px;
-
     background:
         radial-gradient(
             circle at center,
@@ -777,19 +968,14 @@ footer span{
     left:50%;
     top:50%;
     transform:translate(-50%,-50%) scale(.8);
-
     width:min(90%,420px);
     padding:35px;
-
     background:#050a12;
     border:1px solid rgba(0,255,255,.35);
     border-radius:18px;
-
     text-align:center;
     z-index:2000;
-
     box-shadow:0 0 60px rgba(0,255,255,.15);
-
     opacity:0;
     pointer-events:none;
     transition:.35s;
@@ -822,35 +1008,49 @@ footer span{
 
 /* ================= MOBILE ================= */
 
-@media(max-width:850px){
+@media(max-width:950px){
 
     nav{
         padding:0 20px;
     }
 
     nav ul{
-        gap:12px;
+        gap:10px;
     }
 
     nav ul li a{
-        font-size:10px;
+        font-size:9px;
     }
 
     .games{
         grid-template-columns:1fr;
     }
 
-    .hero h1{
-        letter-spacing:-3px;
+}
+
+@media(max-width:700px){
+
+    .duel-container{
+        padding:12px;
     }
 
-    .chat-input{
+    .duel-top{
+        grid-template-columns:1fr 70px 1fr;
+        gap:8px;
+    }
+
+    .fight-status{
+        font-size:13px;
+    }
+
+    .fighter-info small{
+        font-size:7px;
+    }
+
+    .controls{
         grid-template-columns:1fr;
     }
 
-    .chat-input button{
-        height:48px;
-    }
 }
 
 @media(max-width:550px){
@@ -864,16 +1064,16 @@ footer span{
     }
 
     nav ul{
-        gap:7px;
+        gap:6px;
     }
 
     nav ul li a{
-        font-size:8px;
+        font-size:7px;
     }
 
     .username-btn{
         padding:7px 9px;
-        font-size:9px;
+        font-size:8px;
     }
 
     .user-badge{
@@ -907,13 +1107,24 @@ footer span{
     .username-box{
         padding:30px 22px;
     }
+
+    .chat-input{
+        grid-template-columns:1fr;
+    }
+
+    .chat-input button{
+        height:48px;
+    }
+
 }
 
 @media(pointer:coarse){
+
     #cursorGlow,
     #cursorPoint{
         display:none;
     }
+
 }
 </style>
 </head>
@@ -935,6 +1146,7 @@ footer span{
 
         <li><a href="#home">HOME</a></li>
         <li><a href="#games">GAMES</a></li>
+        <li><a href="#duel">2 PLAYER</a></li>
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#chat">CHAT</a></li>
         <li><a href="#contact">CONTACT</a></li>
@@ -976,7 +1188,6 @@ footer span{
 
 </nav>
 
-
 <!-- ================= HERO ================= -->
 
 <section class="hero" id="home">
@@ -1014,6 +1225,13 @@ footer span{
             </a>
 
             <a
+                href="#duel"
+                class="btn"
+            >
+                ⚔️ 2 Player
+            </a>
+
+            <a
                 href="#chat"
                 class="btn"
             >
@@ -1025,7 +1243,6 @@ footer span{
     </div>
 
 </section>
-
 
 <!-- ================= GAMES ================= -->
 
@@ -1084,6 +1301,148 @@ footer span{
 
 </section>
 
+<!-- ================= 2 PLAYER FIGHTING ================= -->
+
+<section id="duel">
+
+    <div class="section-title">
+
+        <h2>⚔️ 2 Player Battle</h2>
+
+        <p>
+            Challenge your friend in the Astra_Krynix Arena
+        </p>
+
+    </div>
+
+    <div class="duel-container">
+
+        <div class="duel-top">
+
+            <div class="fighter-info">
+
+                <span>PLAYER 1</span>
+
+                <div class="health-wrap">
+
+                    <div
+                        class="health-bar p1-health"
+                        id="p1Health"
+                    ></div>
+
+                </div>
+
+                <small>
+                    WASD + F ATTACK
+                </small>
+
+            </div>
+
+
+            <div
+                class="fight-status"
+                id="fightStatus"
+            >
+                READY
+            </div>
+
+
+            <div class="fighter-info p2-info">
+
+                <span>PLAYER 2</span>
+
+                <div class="health-wrap">
+
+                    <div
+                        class="health-bar p2-health"
+                        id="p2Health"
+                    ></div>
+
+                </div>
+
+                <small>
+                    ARROWS + L ATTACK
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="duel-game">
+
+            <canvas
+                id="fightCanvas"
+                width="900"
+                height="450"
+            ></canvas>
+
+
+            <div
+                class="fight-overlay"
+                id="fightOverlay"
+            >
+
+                <div
+                    class="winner-text"
+                    id="winnerText"
+                >
+                    PLAYER 1 WINS!
+                </div>
+
+                <button id="rematchBtn">
+                    ⚡ REMATCH
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="controls">
+
+            <div>
+
+                <strong>
+                    PLAYER 1
+                </strong>
+
+                <p>
+                    W = Jump
+                    &nbsp; A/D = Move
+                    &nbsp; F = Attack
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    PLAYER 2
+                </strong>
+
+                <p>
+                    ↑ = Jump
+                    &nbsp; ←/→ = Move
+                    &nbsp; L = Attack
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="start-fight"
+            id="startFight"
+        >
+            ⚔️ START BATTLE
+        </button>
+
+    </div>
+
+</section>
 
 <!-- ================= ABOUT ================= -->
 
@@ -1093,7 +1452,9 @@ footer span{
 
         <h2>About Me</h2>
 
-        <p>Welcome to Astra_Krynix</p>
+        <p>
+            Welcome to Astra_Krynix
+        </p>
 
     </div>
 
@@ -1111,7 +1472,6 @@ footer span{
 
 </section>
 
-
 <!-- ================= CHAT ================= -->
 
 <section id="chat">
@@ -1120,7 +1480,9 @@ footer span{
 
         <h2>Community Chat</h2>
 
-        <p>Talk with other Astra_Krynix players</p>
+        <p>
+            Talk with other Astra_Krynix players
+        </p>
 
     </div>
 
@@ -1128,7 +1490,9 @@ footer span{
 
         <div class="chat-header">
 
-            <h3>💬 Astra_Krynix Chat</h3>
+            <h3>
+                💬 Astra_Krynix Chat
+            </h3>
 
             <div class="online">
                 ONLINE
@@ -1136,10 +1500,12 @@ footer span{
 
         </div>
 
+
         <div
             class="messages"
             id="messages"
         >
+
             <div
                 data-empty="true"
                 style="
@@ -1150,7 +1516,9 @@ footer span{
             >
                 Loading messages...
             </div>
+
         </div>
+
 
         <div class="chat-input">
 
@@ -1178,14 +1546,15 @@ footer span{
 
 </section>
 
-
 <!-- ================= CONTACT ================= -->
 
 <section id="contact">
 
     <div class="contact-box">
 
-        <h2>Join The Community</h2>
+        <h2>
+            Join The Community
+        </h2>
 
         <p>
             Follow the journey and connect with Astra_Krynix.
@@ -1215,7 +1584,6 @@ footer span{
 
 </section>
 
-
 <!-- ================= FOOTER ================= -->
 
 <footer>
@@ -1226,7 +1594,6 @@ footer span{
 
 </footer>
 
-
 <!-- ================= WELCOME POPUP ================= -->
 
 <div
@@ -1234,7 +1601,9 @@ footer span{
     id="welcomePopup"
 >
 
-    <h2>⚡ Welcome!</h2>
+    <h2>
+        ⚡ Welcome!
+    </h2>
 
     <p>
         Welcome to the official Astra_Krynix gaming website.
@@ -1245,7 +1614,6 @@ footer span{
     </button>
 
 </div>
-
 
 <!-- ================= USERNAME POPUP ================= -->
 
@@ -1307,7 +1675,6 @@ footer span{
 
 </div>
 
-
 <script>
 
 /* =========================================================
@@ -1362,8 +1729,6 @@ const usernameInput =
     document.getElementById("username");
 
 
-/* OPEN USERNAME POPUP */
-
 function openUsername(){
 
     usernameStatus.textContent = "";
@@ -1382,8 +1747,6 @@ function openUsername(){
 }
 
 
-/* CLOSE USERNAME POPUP */
-
 function closeUsername(){
 
     usernameOverlay.classList.remove("active");
@@ -1392,8 +1755,6 @@ function closeUsername(){
 
 }
 
-
-/* UPDATE USERNAME UI */
 
 function updateUsernameUI(){
 
@@ -1445,8 +1806,6 @@ function updateUsernameUI(){
 }
 
 
-/* SAVE USERNAME */
-
 function saveUsername(){
 
     const name =
@@ -1480,8 +1839,6 @@ function saveUsername(){
 
 }
 
-
-/* EVENTS */
 
 usernameBtn.addEventListener(
     "click",
@@ -1551,8 +1908,6 @@ const sendBtn =
     document.getElementById("sendBtn");
 
 
-/* HTML SECURITY */
-
 function escapeHTML(text){
 
     return text
@@ -1564,8 +1919,6 @@ function escapeHTML(text){
 
 }
 
-
-/* DISPLAY MESSAGE */
 
 function addMessage(msg){
 
@@ -1604,8 +1957,6 @@ function addMessage(msg){
 
 }
 
-
-/* LOAD OLD MESSAGES */
 
 async function loadMessages(){
 
@@ -1678,10 +2029,6 @@ async function loadMessages(){
 }
 
 
-/* =========================================================
-   SEND MESSAGE
-========================================================= */
-
 async function sendMessage(){
 
     let username =
@@ -1689,11 +2036,6 @@ async function sendMessage(){
             "astraUsername"
         );
 
-
-    /*
-       If username does not exist,
-       open username popup.
-    */
 
     if(!username){
 
@@ -1785,8 +2127,6 @@ sendBtn.addEventListener(
 );
 
 
-/* ENTER TO SEND */
-
 messageInput.addEventListener(
     "keydown",
     function(e){
@@ -1831,11 +2171,6 @@ supabaseClient
 
 
 loadMessages();
-
-
-/* =========================================================
-   INITIAL USERNAME
-========================================================= */
 
 updateUsernameUI();
 
@@ -1959,7 +2294,964 @@ closePopup.addEventListener(
 );
 
 
-/* ESC CLOSE */
+/* =========================================================
+   2 PLAYER FIGHTING GAME
+========================================================= */
+
+const canvas =
+    document.getElementById(
+        "fightCanvas"
+    );
+
+const ctx =
+    canvas.getContext("2d");
+
+const p1HealthBar =
+    document.getElementById(
+        "p1Health"
+    );
+
+const p2HealthBar =
+    document.getElementById(
+        "p2Health"
+    );
+
+const fightStatus =
+    document.getElementById(
+        "fightStatus"
+    );
+
+const fightOverlay =
+    document.getElementById(
+        "fightOverlay"
+    );
+
+const winnerText =
+    document.getElementById(
+        "winnerText"
+    );
+
+const rematchBtn =
+    document.getElementById(
+        "rematchBtn"
+    );
+
+const startFight =
+    document.getElementById(
+        "startFight"
+    );
+
+
+const keys = {};
+
+let gameRunning = false;
+let countdown = false;
+let animationId = null;
+
+
+const player1 = {
+
+    x:150,
+    y:330,
+
+    width:48,
+    height:75,
+
+    vx:0,
+    vy:0,
+
+    health:100,
+
+    grounded:true,
+    attacking:false,
+
+    attackCooldown:0,
+    hitTimer:0,
+
+    color:"#00ffff",
+    name:"PLAYER 1"
+
+};
+
+
+const player2 = {
+
+    x:700,
+    y:330,
+
+    width:48,
+    height:75,
+
+    vx:0,
+    vy:0,
+
+    health:100,
+
+    grounded:true,
+    attacking:false,
+
+    attackCooldown:0,
+    hitTimer:0,
+
+    color:"#b14cff",
+    name:"PLAYER 2"
+
+};
+
+
+const gravity = .75;
+const groundY = 405;
+
+
+/* ================= KEYBOARD ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        const key =
+            e.key.toLowerCase();
+
+        keys[key] = true;
+
+
+        if([
+            "arrowup",
+            "arrowdown",
+            "arrowleft",
+            "arrowright",
+            " "
+        ].includes(key)){
+
+            e.preventDefault();
+
+        }
+
+
+        if(
+            gameRunning &&
+            key === "f"
+        ){
+
+            attack(
+                player1,
+                player2
+            );
+
+        }
+
+
+        if(
+            gameRunning &&
+            key === "l"
+        ){
+
+            attack(
+                player2,
+                player1
+            );
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keyup",
+    function(e){
+
+        keys[
+            e.key.toLowerCase()
+        ] = false;
+
+    }
+);
+
+
+/* ================= RESET ================= */
+
+function resetFight(){
+
+    cancelAnimationFrame(
+        animationId
+    );
+
+
+    player1.x = 150;
+    player1.y = 330;
+    player1.vx = 0;
+    player1.vy = 0;
+    player1.health = 100;
+    player1.grounded = true;
+    player1.attacking = false;
+    player1.attackCooldown = 0;
+    player1.hitTimer = 0;
+
+
+    player2.x = 700;
+    player2.y = 330;
+    player2.vx = 0;
+    player2.vy = 0;
+    player2.health = 100;
+    player2.grounded = true;
+    player2.attacking = false;
+    player2.attackCooldown = 0;
+    player2.hitTimer = 0;
+
+
+    p1HealthBar.style.width =
+        "100%";
+
+    p2HealthBar.style.width =
+        "100%";
+
+
+    fightOverlay.classList.remove(
+        "show"
+    );
+
+
+    fightStatus.textContent =
+        "READY";
+
+
+    gameRunning = false;
+    countdown = false;
+
+
+    drawScene();
+
+}
+
+
+/* ================= START GAME ================= */
+
+function startGame(){
+
+    resetFight();
+
+
+    let count = 3;
+
+    countdown = true;
+
+    fightStatus.textContent =
+        count;
+
+
+    const timer =
+        setInterval(
+            function(){
+
+                count--;
+
+
+                if(count > 0){
+
+                    fightStatus.textContent =
+                        count;
+
+                }else{
+
+                    clearInterval(timer);
+
+                    fightStatus.textContent =
+                        "FIGHT!";
+
+                    countdown = false;
+                    gameRunning = true;
+
+                    gameLoop();
+
+                }
+
+            },
+            700
+        );
+
+}
+
+
+startFight.addEventListener(
+    "click",
+    startGame
+);
+
+
+rematchBtn.addEventListener(
+    "click",
+    startGame
+);
+
+
+/* ================= MOVEMENT ================= */
+
+function updatePlayer(
+    player,
+    number
+){
+
+    if(player.attackCooldown > 0){
+
+        player.attackCooldown--;
+
+    }
+
+
+    if(player.hitTimer > 0){
+
+        player.hitTimer--;
+
+    }
+
+
+    if(number === 1){
+
+        if(keys["a"]){
+
+            player.vx = -4.5;
+
+        }else if(keys["d"]){
+
+            player.vx = 4.5;
+
+        }else{
+
+            player.vx *= .75;
+
+        }
+
+
+        if(
+            keys["w"] &&
+            player.grounded
+        ){
+
+            player.vy = -13;
+
+            player.grounded = false;
+
+        }
+
+    }else{
+
+        if(keys["arrowleft"]){
+
+            player.vx = -4.5;
+
+        }else if(keys["arrowright"]){
+
+            player.vx = 4.5;
+
+        }else{
+
+            player.vx *= .75;
+
+        }
+
+
+        if(
+            keys["arrowup"] &&
+            player.grounded
+        ){
+
+            player.vy = -13;
+
+            player.grounded = false;
+
+        }
+
+    }
+
+
+    player.vy += gravity;
+
+    player.x += player.vx;
+
+    player.y += player.vy;
+
+
+    if(
+        player.y + player.height >= groundY
+    ){
+
+        player.y =
+            groundY - player.height;
+
+        player.vy = 0;
+
+        player.grounded = true;
+
+    }
+
+
+    player.x =
+        Math.max(
+            25,
+            Math.min(
+                canvas.width -
+                player.width -
+                25,
+                player.x
+            )
+        );
+
+}
+
+
+/* ================= ATTACK ================= */
+
+function attack(
+    attacker,
+    enemy
+){
+
+    if(
+        !gameRunning ||
+        countdown ||
+        attacker.attackCooldown > 0 ||
+        attacker.health <= 0
+    ){
+
+        return;
+
+    }
+
+
+    attacker.attacking = true;
+
+    attacker.attackCooldown = 35;
+
+
+    setTimeout(
+        function(){
+
+            if(!gameRunning){
+
+                attacker.attacking = false;
+
+                return;
+
+            }
+
+
+            const attackRange = 68;
+
+
+            const attackerCenter =
+                attacker.x +
+                attacker.width / 2;
+
+
+            const enemyCenter =
+                enemy.x +
+                enemy.width / 2;
+
+
+            const distance =
+                Math.abs(
+                    attackerCenter -
+                    enemyCenter
+                );
+
+
+            const verticalDistance =
+                Math.abs(
+                    attacker.y -
+                    enemy.y
+                );
+
+
+            if(
+                distance < attackRange &&
+                verticalDistance < 80
+            ){
+
+                enemy.health =
+                    Math.max(
+                        0,
+                        enemy.health - 10
+                    );
+
+
+                enemy.hitTimer = 12;
+
+
+                enemy.vx =
+                    attacker.x <
+                    enemy.x
+                    ? 8
+                    : -8;
+
+
+                updateHealth();
+
+
+                if(
+                    enemy.health <= 0
+                ){
+
+                    endGame(
+                        attacker.name
+                    );
+
+                }
+
+            }
+
+
+            attacker.attacking = false;
+
+        },
+        100
+    );
+
+}
+
+
+/* ================= HEALTH ================= */
+
+function updateHealth(){
+
+    p1HealthBar.style.width =
+        player1.health + "%";
+
+    p2HealthBar.style.width =
+        player2.health + "%";
+
+}
+
+
+/* ================= PLAYER COLLISION ================= */
+
+function separatePlayers(){
+
+    const overlap =
+        player1.x <
+            player2.x +
+            player2.width &&
+
+        player1.x +
+            player1.width >
+            player2.x &&
+
+        player1.y <
+            player2.y +
+            player2.height &&
+
+        player1.y +
+            player1.height >
+            player2.y;
+
+
+    if(overlap){
+
+        if(
+            player1.x <
+            player2.x
+        ){
+
+            player1.x -= 1;
+            player2.x += 1;
+
+        }else{
+
+            player1.x += 1;
+            player2.x -= 1;
+
+        }
+
+    }
+
+}
+
+
+/* ================= END GAME ================= */
+
+function endGame(
+    winner
+){
+
+    gameRunning = false;
+
+    winnerText.textContent =
+        winner + " WINS!";
+
+    fightStatus.textContent =
+        "ROUND OVER";
+
+    fightOverlay.classList.add(
+        "show"
+    );
+
+}
+
+
+/* ================= DRAW BACKGROUND ================= */
+
+function drawBackground(){
+
+    const gradient =
+        ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            canvas.height
+        );
+
+
+    gradient.addColorStop(
+        0,
+        "#050a16"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#010207"
+    );
+
+
+    ctx.fillStyle =
+        gradient;
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /* GRID */
+
+    ctx.strokeStyle =
+        "rgba(0,255,255,.055)";
+
+    ctx.lineWidth = 1;
+
+
+    for(
+        let x=0;
+        x<canvas.width;
+        x+=45
+    ){
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            x,
+            0
+        );
+
+        ctx.lineTo(
+            x,
+            canvas.height
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    for(
+        let y=0;
+        y<canvas.height;
+        y+=45
+    ){
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            0,
+            y
+        );
+
+        ctx.lineTo(
+            canvas.width,
+            y
+        );
+
+        ctx.stroke();
+
+    }
+
+
+    /* GROUND */
+
+    ctx.fillStyle =
+        "rgba(0,255,255,.04)";
+
+    ctx.fillRect(
+        0,
+        groundY,
+        canvas.width,
+        canvas.height-groundY
+    );
+
+
+    ctx.strokeStyle =
+        "rgba(0,255,255,.4)";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        groundY
+    );
+
+    ctx.lineTo(
+        canvas.width,
+        groundY
+    );
+
+    ctx.stroke();
+
+}
+
+
+/* ================= DRAW PLAYER ================= */
+
+function drawPlayer(
+    player
+){
+
+    ctx.save();
+
+
+    ctx.shadowColor =
+        player.color;
+
+    ctx.shadowBlur =
+        player.hitTimer > 0
+        ? 35
+        : 18;
+
+
+    /* BODY */
+
+    ctx.fillStyle =
+        player.color;
+
+    ctx.fillRect(
+        player.x + 9,
+        player.y + 22,
+        player.width - 18,
+        player.height - 22
+    );
+
+
+    /* HEAD */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        player.x +
+        player.width / 2,
+        player.y + 13,
+        15,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    /* EYES */
+
+    ctx.shadowBlur = 5;
+
+    ctx.fillStyle =
+        "#ffffff";
+
+    ctx.fillRect(
+        player.x + 16,
+        player.y + 9,
+        5,
+        4
+    );
+
+    ctx.fillRect(
+        player.x + 27,
+        player.y + 9,
+        5,
+        4
+    );
+
+
+    /* LEGS */
+
+    ctx.fillStyle =
+        player.color;
+
+    ctx.fillRect(
+        player.x + 10,
+        player.y + player.height - 5,
+        10,
+        20
+    );
+
+    ctx.fillRect(
+        player.x + 28,
+        player.y + player.height - 5,
+        10,
+        20
+    );
+
+
+    /* ATTACK EFFECT */
+
+    if(player.attacking){
+
+        ctx.shadowColor =
+            "#ffffff";
+
+        ctx.shadowBlur = 25;
+
+        ctx.fillStyle =
+            "#ffffff";
+
+
+        if(
+            player === player1
+        ){
+
+            ctx.fillRect(
+                player.x +
+                player.width -
+                2,
+                player.y + 30,
+                48,
+                8
+            );
+
+        }else{
+
+            ctx.fillRect(
+                player.x - 46,
+                player.y + 30,
+                48,
+                8
+            );
+
+        }
+
+    }
+
+
+    ctx.restore();
+
+}
+
+
+/* ================= PLAYER NAME ================= */
+
+function drawName(
+    player
+){
+
+    ctx.save();
+
+    ctx.font =
+        "bold 11px Arial";
+
+    ctx.textAlign =
+        "center";
+
+    ctx.fillStyle =
+        player.color;
+
+    ctx.shadowColor =
+        player.color;
+
+    ctx.shadowBlur = 8;
+
+
+    ctx.fillText(
+        player.name,
+        player.x +
+        player.width / 2,
+        player.y - 12
+    );
+
+
+    ctx.restore();
+
+}
+
+
+/* ================= DRAW SCENE ================= */
+
+function drawScene(){
+
+    drawBackground();
+
+    drawPlayer(
+        player1
+    );
+
+    drawPlayer(
+        player2
+    );
+
+    drawName(
+        player1
+    );
+
+    drawName(
+        player2
+    );
+
+}
+
+
+/* ================= GAME LOOP ================= */
+
+function gameLoop(){
+
+    if(!gameRunning){
+
+        drawScene();
+
+        return;
+
+    }
+
+
+    updatePlayer(
+        player1,
+        1
+    );
+
+
+    updatePlayer(
+        player2,
+        2
+    );
+
+
+    separatePlayers();
+
+
+    drawScene();
+
+
+    animationId =
+        requestAnimationFrame(
+            gameLoop
+        );
+
+}
+
+
+/* INITIAL GAME */
+
+resetFight();
+
+
+/* =========================================================
+   ESC CLOSE
+========================================================= */
 
 document.addEventListener(
     "keydown",
