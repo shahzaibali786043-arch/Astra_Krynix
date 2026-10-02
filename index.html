@@ -143,15 +143,15 @@ nav ul li a:hover{
     text-shadow:0 0 12px #00ffff;
 }
 
-/* ================= AUTH NAV BUTTON ================= */
+/* ================= USERNAME BUTTON ================= */
 
-.auth-nav{
+.username-nav{
     display:flex;
     align-items:center;
     gap:8px;
 }
 
-.auth-btn{
+.username-btn{
     border:1px solid rgba(0,255,255,.45);
     background:rgba(0,255,255,.06);
     color:#00ffff;
@@ -164,22 +164,12 @@ nav ul li a:hover{
     transition:.25s;
 }
 
-.auth-btn:hover{
+.username-btn:hover{
     background:rgba(0,255,255,.15);
     box-shadow:
         0 0 15px rgba(0,255,255,.25),
         inset 0 0 15px rgba(0,255,255,.05);
     transform:translateY(-2px);
-}
-
-.logout-btn{
-    border-color:rgba(255,80,100,.4);
-    color:#ff7182;
-}
-
-.logout-btn:hover{
-    box-shadow:0 0 15px rgba(255,70,90,.2);
-    background:rgba(255,70,90,.08);
 }
 
 /* ================= HERO ================= */
@@ -475,7 +465,7 @@ section{
 
 .chat-input{
     display:grid;
-    grid-template-columns:150px 1fr 90px;
+    grid-template-columns:180px 1fr 90px;
     gap:10px;
     padding:18px;
     border-top:1px solid rgba(0,255,255,.12);
@@ -518,9 +508,9 @@ section{
     cursor:not-allowed;
 }
 
-/* ================= LOGIN OVERLAY ================= */
+/* ================= USERNAME MODAL ================= */
 
-.auth-overlay{
+.username-overlay{
     position:fixed;
     inset:0;
     z-index:5000;
@@ -537,12 +527,12 @@ section{
     transition:.3s;
 }
 
-.auth-overlay.active{
+.username-overlay.active{
     opacity:1;
     visibility:visible;
 }
 
-.auth-box{
+.username-box{
     position:relative;
     width:min(100%,430px);
     padding:38px;
@@ -571,11 +561,11 @@ section{
     transition:.3s;
 }
 
-.auth-overlay.active .auth-box{
+.username-overlay.active .username-box{
     transform:translateY(0) scale(1);
 }
 
-.auth-close{
+.username-close{
     position:absolute;
     top:15px;
     right:17px;
@@ -594,13 +584,13 @@ section{
     transition:.2s;
 }
 
-.auth-close:hover{
+.username-close:hover{
     color:#00ffff;
     border-color:#00ffff;
     box-shadow:0 0 15px rgba(0,255,255,.2);
 }
 
-.auth-logo{
+.username-logo{
     text-align:center;
     font-size:28px;
     font-weight:1000;
@@ -612,49 +602,22 @@ section{
         0 0 25px rgba(0,255,255,.35);
 }
 
-.auth-logo span{
+.username-logo span{
     color:#00ffff;
 }
 
-.auth-subtitle{
+.username-subtitle{
     text-align:center;
     color:#728293;
     font-size:13px;
     margin-bottom:28px;
 }
 
-.auth-tabs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:5px;
-    padding:4px;
-    border-radius:10px;
-    background:rgba(255,255,255,.035);
-    margin-bottom:22px;
-}
-
-.auth-tab{
-    border:none;
-    padding:11px;
-    border-radius:8px;
-    color:#718092;
-    background:transparent;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.2s;
-}
-
-.auth-tab.active{
-    color:#02040a;
-    background:#00ffff;
-    box-shadow:0 0 15px rgba(0,255,255,.2);
-}
-
-.auth-field{
+.username-field{
     margin-bottom:15px;
 }
 
-.auth-field label{
+.username-field label{
     display:block;
     color:#9aa9b8;
     font-size:11px;
@@ -663,7 +626,7 @@ section{
     margin-bottom:7px;
 }
 
-.auth-field input{
+.username-field input{
     width:100%;
     padding:14px 15px;
     border-radius:9px;
@@ -676,14 +639,14 @@ section{
     transition:.2s;
 }
 
-.auth-field input:focus{
+.username-field input:focus{
     border-color:#00ffff;
     box-shadow:
         0 0 15px rgba(0,255,255,.08),
         inset 0 0 12px rgba(0,255,255,.025);
 }
 
-.auth-submit{
+.username-save{
     width:100%;
     padding:14px;
     margin-top:5px;
@@ -701,36 +664,22 @@ section{
     transition:.25s;
 }
 
-.auth-submit:hover{
+.username-save:hover{
     box-shadow:
         0 0 20px #00ffff,
         0 0 45px rgba(0,255,255,.3);
     transform:translateY(-2px);
 }
 
-.auth-submit:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-    transform:none;
-}
-
-.auth-status{
+.username-status{
     min-height:20px;
     margin-top:15px;
     text-align:center;
-    font-size:12px;
-    line-height:1.5;
-}
-
-.auth-status.error{
     color:#ff7182;
+    font-size:12px;
 }
 
-.auth-status.success{
-    color:#00ff99;
-}
-
-.auth-note{
+.username-note{
     margin-top:18px;
     text-align:center;
     color:#526171;
@@ -748,6 +697,7 @@ section{
     border:1px solid rgba(0,255,255,.15);
     border-radius:9px;
     background:rgba(0,255,255,.035);
+    cursor:pointer;
 }
 
 .user-badge.show{
@@ -921,7 +871,7 @@ footer span{
         font-size:8px;
     }
 
-    .auth-btn{
+    .username-btn{
         padding:7px 9px;
         font-size:9px;
     }
@@ -954,7 +904,7 @@ footer span{
         height:350px;
     }
 
-    .auth-box{
+    .username-box{
         padding:30px 22px;
     }
 }
@@ -989,11 +939,12 @@ footer span{
         <li><a href="#chat">CHAT</a></li>
         <li><a href="#contact">CONTACT</a></li>
 
-        <li class="auth-nav">
+        <li class="username-nav">
 
             <div
                 class="user-badge"
                 id="userBadge"
+                title="Change username"
             >
 
                 <div
@@ -1007,24 +958,16 @@ footer span{
                     class="user-name"
                     id="navUsername"
                 >
-                    User
+                    Player
                 </div>
 
             </div>
 
             <button
-                class="auth-btn"
-                id="loginBtn"
+                class="username-btn"
+                id="usernameBtn"
             >
-                LOGIN
-            </button>
-
-            <button
-                class="auth-btn logout-btn"
-                id="logoutBtn"
-                style="display:none;"
-            >
-                LOGOUT
+                ENTER USERNAME
             </button>
 
         </li>
@@ -1198,6 +1141,7 @@ footer span{
             id="messages"
         >
             <div
+                data-empty="true"
                 style="
                     text-align:center;
                     color:#647281;
@@ -1303,57 +1247,31 @@ footer span{
 </div>
 
 
-<!-- ================= LOGIN / SIGNUP ================= -->
+<!-- ================= USERNAME POPUP ================= -->
 
 <div
-    class="auth-overlay"
-    id="authOverlay"
+    class="username-overlay"
+    id="usernameOverlay"
 >
 
-    <div class="auth-box">
+    <div class="username-box">
 
         <button
-            class="auth-close"
-            id="authClose"
+            class="username-close"
+            id="usernameClose"
         >
             ×
         </button>
 
-        <div class="auth-logo">
+        <div class="username-logo">
             Astra<span>_Krynix</span>
         </div>
 
-        <div class="auth-subtitle">
-            Join the gaming community
+        <div class="username-subtitle">
+            Enter your gamer name to join the chat
         </div>
 
-
-        <div class="auth-tabs">
-
-            <button
-                class="auth-tab active"
-                id="loginTab"
-            >
-                LOGIN
-            </button>
-
-            <button
-                class="auth-tab"
-                id="signupTab"
-            >
-                SIGN UP
-            </button>
-
-        </div>
-
-
-        <!-- USERNAME -->
-
-        <div
-            class="auth-field"
-            id="usernameField"
-            style="display:none;"
-        >
+        <div class="username-field">
 
             <label>
                 GAMER NAME
@@ -1361,66 +1279,28 @@ footer span{
 
             <input
                 type="text"
-                id="authUsername"
+                id="usernamePopupInput"
                 maxlength="20"
                 placeholder="AstraPlayer"
+                autocomplete="off"
             >
 
         </div>
-
-
-        <!-- EMAIL -->
-
-        <div class="auth-field">
-
-            <label>
-                EMAIL
-            </label>
-
-            <input
-                type="email"
-                id="authEmail"
-                placeholder="you@example.com"
-                autocomplete="email"
-            >
-
-        </div>
-
-
-        <!-- PASSWORD -->
-
-        <div class="auth-field">
-
-            <label>
-                PASSWORD
-            </label>
-
-            <input
-                type="password"
-                id="authPassword"
-                placeholder="••••••••"
-                autocomplete="current-password"
-            >
-
-        </div>
-
 
         <button
-            class="auth-submit"
-            id="authSubmit"
+            class="username-save"
+            id="usernameSave"
         >
-            LOGIN
+            SAVE USERNAME
         </button>
 
-
         <div
-            class="auth-status"
-            id="authStatus"
+            class="username-status"
+            id="usernameStatus"
         ></div>
 
-
-        <div class="auth-note">
-            Your account is securely handled by Supabase Authentication.
+        <div class="username-note">
+            Your username is saved only in this browser.
         </div>
 
     </div>
@@ -1448,44 +1328,26 @@ const supabaseClient =
 
 
 /* =========================================================
-   AUTH ELEMENTS
+   USERNAME SYSTEM
 ========================================================= */
 
-const authOverlay =
-    document.getElementById("authOverlay");
+const usernameBtn =
+    document.getElementById("usernameBtn");
 
-const authClose =
-    document.getElementById("authClose");
+const usernameOverlay =
+    document.getElementById("usernameOverlay");
 
-const loginBtn =
-    document.getElementById("loginBtn");
+const usernameClose =
+    document.getElementById("usernameClose");
 
-const logoutBtn =
-    document.getElementById("logoutBtn");
+const usernamePopupInput =
+    document.getElementById("usernamePopupInput");
 
-const loginTab =
-    document.getElementById("loginTab");
+const usernameSave =
+    document.getElementById("usernameSave");
 
-const signupTab =
-    document.getElementById("signupTab");
-
-const usernameField =
-    document.getElementById("usernameField");
-
-const authUsername =
-    document.getElementById("authUsername");
-
-const authEmail =
-    document.getElementById("authEmail");
-
-const authPassword =
-    document.getElementById("authPassword");
-
-const authSubmit =
-    document.getElementById("authSubmit");
-
-const authStatus =
-    document.getElementById("authStatus");
+const usernameStatus =
+    document.getElementById("usernameStatus");
 
 const userBadge =
     document.getElementById("userBadge");
@@ -1496,463 +1358,180 @@ const navUsername =
 const userAvatar =
     document.getElementById("userAvatar");
 
+const usernameInput =
+    document.getElementById("username");
 
-let authMode = "login";
 
+/* OPEN USERNAME POPUP */
 
-/* =========================================================
-   AUTH MODAL
-========================================================= */
+function openUsername(){
 
-function openAuth(mode = "login"){
+    usernameStatus.textContent = "";
 
-    authMode = mode;
+    usernamePopupInput.value =
+        localStorage.getItem("astraUsername") || "";
 
-    updateAuthUI();
-
-    authOverlay.classList.add("active");
+    usernameOverlay.classList.add("active");
 
     setTimeout(function(){
 
-        authEmail.focus();
+        usernamePopupInput.focus();
 
     },100);
 
 }
 
 
-function closeAuth(){
+/* CLOSE USERNAME POPUP */
 
-    authOverlay.classList.remove("active");
+function closeUsername(){
 
-    authStatus.textContent = "";
+    usernameOverlay.classList.remove("active");
 
-    authStatus.className = "auth-status";
+    usernameStatus.textContent = "";
 
 }
 
 
-function updateAuthUI(){
+/* UPDATE USERNAME UI */
 
-    if(authMode === "login"){
+function updateUsernameUI(){
 
-        loginTab.classList.add("active");
-        signupTab.classList.remove("active");
+    const savedUsername =
+        localStorage.getItem("astraUsername");
 
-        usernameField.style.display = "none";
 
-        authSubmit.textContent = "LOGIN";
+    if(savedUsername){
 
-        authPassword.autocomplete = "current-password";
+        usernameBtn.textContent =
+            "CHANGE USERNAME";
+
+        userBadge.classList.add("show");
+
+        navUsername.textContent =
+            savedUsername;
+
+        userAvatar.textContent =
+            savedUsername
+            .charAt(0)
+            .toUpperCase();
+
+        usernameInput.value =
+            savedUsername;
+
+        usernameInput.readOnly =
+            true;
+
+        usernameInput.style.opacity =
+            ".65";
 
     }else{
 
-        signupTab.classList.add("active");
-        loginTab.classList.remove("active");
-
-        usernameField.style.display = "block";
-
-        authSubmit.textContent = "CREATE ACCOUNT";
-
-        authPassword.autocomplete = "new-password";
-
-    }
-
-    authStatus.textContent = "";
-    authStatus.className = "auth-status";
-
-}
-
-
-loginBtn.addEventListener(
-    "click",
-    function(){
-
-        openAuth("login");
-
-    }
-);
-
-
-authClose.addEventListener(
-    "click",
-    closeAuth
-);
-
-
-authOverlay.addEventListener(
-    "click",
-    function(e){
-
-        if(e.target === authOverlay){
-
-            closeAuth();
-
-        }
-
-    }
-);
-
-
-loginTab.addEventListener(
-    "click",
-    function(){
-
-        authMode = "login";
-
-        updateAuthUI();
-
-    }
-);
-
-
-signupTab.addEventListener(
-    "click",
-    function(){
-
-        authMode = "signup";
-
-        updateAuthUI();
-
-    }
-);
-
-
-/* =========================================================
-   AUTH MESSAGE
-========================================================= */
-
-function authMessage(
-    message,
-    type = "error"
-){
-
-    authStatus.textContent = message;
-
-    authStatus.className =
-        "auth-status " + type;
-
-}
-
-
-/* =========================================================
-   LOGIN / SIGNUP
-========================================================= */
-
-authSubmit.addEventListener(
-    "click",
-    async function(){
-
-        const email =
-            authEmail.value.trim();
-
-        const password =
-            authPassword.value;
-
-        const username =
-            authUsername.value.trim();
-
-
-        if(!email){
-
-            authMessage(
-                "Email enter karo."
-            );
-
-            authEmail.focus();
-
-            return;
-
-        }
-
-
-        if(password.length < 6){
-
-            authMessage(
-                "Password kam az kam 6 characters ka hona chahiye."
-            );
-
-            authPassword.focus();
-
-            return;
-
-        }
-
-
-        if(
-            authMode === "signup" &&
-            (
-                username.length < 2 ||
-                username.length > 20
-            )
-        ){
-
-            authMessage(
-                "Gamer name 2-20 characters ka hona chahiye."
-            );
-
-            authUsername.focus();
-
-            return;
-
-        }
-
-
-        authSubmit.disabled = true;
-
-        authSubmit.textContent =
-            "PLEASE WAIT...";
-
-
-        try{
-
-            if(authMode === "login"){
-
-                const {
-                    data,
-                    error
-                } =
-                    await supabaseClient.auth.signInWithPassword({
-
-                        email:email,
-                        password:password
-
-                    });
-
-
-                if(error){
-
-                    throw error;
-
-                }
-
-
-                authMessage(
-                    "Login successful! Welcome back.",
-                    "success"
-                );
-
-
-                setTimeout(
-                    closeAuth,
-                    700
-                );
-
-
-            }else{
-
-                const {
-                    data,
-                    error
-                } =
-                    await supabaseClient.auth.signUp({
-
-                        email:email,
-                        password:password,
-
-                        options:{
-                            data:{
-                                username:username
-                            }
-                        }
-
-                    });
-
-
-                if(error){
-
-                    throw error;
-
-                }
-
-
-                if(data.session){
-
-                    authMessage(
-                        "Account created successfully!",
-                        "success"
-                    );
-
-                    setTimeout(
-                        closeAuth,
-                        700
-                    );
-
-                }else{
-
-                    authMessage(
-                        "Account created! Email verify karke login karo.",
-                        "success"
-                    );
-
-                }
-
-            }
-
-        }catch(error){
-
-            console.error(
-                "Auth error:",
-                error
-            );
-
-
-            let msg =
-                error.message ||
-                "Something went wrong.";
-
-
-            if(
-                msg.toLowerCase()
-                .includes("invalid login credentials")
-            ){
-
-                msg =
-                    "Email ya password incorrect hai.";
-
-            }
-
-
-            if(
-                msg.toLowerCase()
-                .includes("user already registered")
-            ){
-
-                msg =
-                    "Ye email already registered hai.";
-
-            }
-
-
-            authMessage(
-                msg
-            );
-
-        }
-
-
-        authSubmit.disabled = false;
-
-        updateAuthUI();
-
-    }
-);
-
-
-/* =========================================================
-   UPDATE NAV AFTER LOGIN
-========================================================= */
-
-function updateUserUI(user){
-
-    if(!user){
-
-        loginBtn.style.display = "block";
-
-        logoutBtn.style.display = "none";
+        usernameBtn.textContent =
+            "ENTER USERNAME";
 
         userBadge.classList.remove("show");
 
         usernameInput.value = "";
+
+        usernameInput.readOnly =
+            false;
+
+        usernameInput.style.opacity =
+            "1";
+
+    }
+
+}
+
+
+/* SAVE USERNAME */
+
+function saveUsername(){
+
+    const name =
+        usernamePopupInput.value.trim();
+
+
+    if(
+        name.length < 1 ||
+        name.length > 20
+    ){
+
+        usernameStatus.textContent =
+            "Username 1-20 characters ka hona chahiye.";
+
+        usernamePopupInput.focus();
 
         return;
 
     }
 
 
-    const username =
-        user.user_metadata?.username ||
-        user.email?.split("@")[0] ||
-        "Player";
-
-
-    loginBtn.style.display = "none";
-
-    logoutBtn.style.display = "block";
-
-    userBadge.classList.add("show");
-
-    navUsername.textContent =
-        username;
-
-    userAvatar.textContent =
-        username
-        .charAt(0)
-        .toUpperCase();
-
-
-    usernameInput.value =
-        username;
-
-    usernameInput.readOnly = true;
-
-    usernameInput.style.opacity = ".65";
-
-}
-
-
-/* =========================================================
-   GET CURRENT USER
-========================================================= */
-
-async function checkUser(){
-
-    const {
-        data
-    } =
-        await supabaseClient.auth.getUser();
-
-    updateUserUI(
-        data.user
+    localStorage.setItem(
+        "astraUsername",
+        name
     );
 
+
+    updateUsernameUI();
+
+    closeUsername();
+
 }
 
 
-checkUser();
+/* EVENTS */
+
+usernameBtn.addEventListener(
+    "click",
+    openUsername
+);
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
+userBadge.addEventListener(
+    "click",
+    openUsername
+);
 
-supabaseClient.auth.onAuthStateChange(
-    function(event, session){
 
-        updateUserUI(
-            session?.user || null
-        );
+usernameClose.addEventListener(
+    "click",
+    closeUsername
+);
+
+
+usernameOverlay.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target === usernameOverlay){
+
+            closeUsername();
+
+        }
 
     }
 );
 
 
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-logoutBtn.addEventListener(
+usernameSave.addEventListener(
     "click",
-    async function(){
-
-        const {
-            error
-        } =
-            await supabaseClient.auth.signOut();
+    saveUsername
+);
 
 
-        if(error){
+usernamePopupInput.addEventListener(
+    "keydown",
+    function(e){
 
-            console.error(
-                "Logout error:",
-                error
-            );
+        if(e.key === "Enter"){
 
-            return;
+            e.preventDefault();
+
+            saveUsername();
 
         }
-
-        updateUserUI(null);
 
     }
 );
@@ -1964,9 +1543,6 @@ logoutBtn.addEventListener(
 
 const messagesBox =
     document.getElementById("messages");
-
-const usernameInput =
-    document.getElementById("username");
 
 const messageInput =
     document.getElementById("message");
@@ -2108,37 +1684,31 @@ async function loadMessages(){
 
 async function sendMessage(){
 
-    const {
-        data:{
-            user
-        }
-    } =
-        await supabaseClient.auth.getUser();
+    let username =
+        localStorage.getItem(
+            "astraUsername"
+        );
 
 
-    if(!user){
-
-        openAuth("login");
-
-        return;
-
-    }
-
-
-    const username =
-        usernameInput.value.trim();
-
-    const message =
-        messageInput.value.trim();
-
+    /*
+       If username does not exist,
+       open username popup.
+    */
 
     if(!username){
 
-        usernameInput.focus();
+        openUsername();
 
         return;
 
     }
+
+
+    username =
+        username.trim();
+
+    const message =
+        messageInput.value.trim();
 
 
     if(!message){
@@ -2150,27 +1720,10 @@ async function sendMessage(){
     }
 
 
-    if(
-        username.length < 1 ||
-        username.length > 20
-    ){
+    if(message.length > 300){
 
         alert(
-            "Username must be 1-20 characters."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        message.length < 1 ||
-        message.length > 300
-    ){
-
-        alert(
-            "Message must be 1-300 characters."
+            "Message 300 characters se zyada nahi ho sakta."
         );
 
         return;
@@ -2278,6 +1831,13 @@ supabaseClient
 
 
 loadMessages();
+
+
+/* =========================================================
+   INITIAL USERNAME
+========================================================= */
+
+updateUsernameUI();
 
 
 /* =========================================================
@@ -2413,7 +1973,7 @@ document.addEventListener(
                 "active"
             );
 
-            closeAuth();
+            closeUsername();
 
         }
 
